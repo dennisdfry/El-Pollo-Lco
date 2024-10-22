@@ -23,8 +23,8 @@ class World {
         this.enemies.forEach(enemy =>{
             this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
         });
-        this.enemies.forEach(clouds =>{
-            this.ctx.drawImage(clouds.img, clouds.x, clouds.y, clouds.width, clouds.height);
+        this.clouds.forEach(cloud =>{
+            this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
         });
         
         let self = this;

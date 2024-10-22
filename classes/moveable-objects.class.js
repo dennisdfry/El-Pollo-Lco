@@ -7,13 +7,10 @@ class MovableObject {
 
     loadImage(path){
         this.img = new Image();
-        this.img.src = path;
-        this.img.onload = () => {
-            console.log("Chicken-Bild geladen: " + path);
-        
+        this.img.src = path; 
         };
 
-    }
+    
     moveRight(){
 
     }

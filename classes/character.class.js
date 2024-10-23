@@ -18,10 +18,11 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            let path = this.Walking_Images[this.currentImage];
+            let i = this.currentImage % this.Walking_Images.length;
+            let path = this.Walking_Images[i];
             this.img = this.imageCache[path];
             this.currentImage++
-        }, 1000);
+        }, 100);
 
     }
     jump() {

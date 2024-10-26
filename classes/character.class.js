@@ -12,6 +12,7 @@ class Character extends MovableObject {
     ];
     world;
     speed = 10;
+    walking_sound
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.Walking_Images);

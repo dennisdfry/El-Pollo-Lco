@@ -23,6 +23,12 @@ class MovableObject {
             this.x -=this.speed;
         }, 1000/60);
     }
+    playAnimation(Walking_Images){
+        let i = this.currentImage % this.Walking_Images.length;
+        let path = this.Walking_Images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++
+    }
     
     moveRight(){
 

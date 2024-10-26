@@ -11,6 +11,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-26.png'
     ];
     world;
+    speed = 10;
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.Walking_Images);
@@ -19,14 +20,23 @@ class Character extends MovableObject {
 
     animate() {
         setInterval(() => {
-            
-            if(this.world.keyboard.RIGHT){
-                console.log(this.world)
-            let i = this.currentImage % this.Walking_Images.length;
-            let path = this.Walking_Images[i];
-            this.img = this.imageCache[path];
-            this.currentImage++
-        }
+            if (this.world.keyboard.RIGHT) {
+                this.x += this.speed;
+                this.otherDirection = false;
+            };
+            if (this.world.keyboard.LEFT) {
+                this.x -= this.speed;
+                this.otherDirection = true;
+            }
+        }, 1000 / 60);
+
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT||this.world.keyboard.LEFT) {
+                let i = this.currentImage % this.Walking_Images.length;
+                let path = this.Walking_Images[i];
+                this.img = this.imageCache[path];
+                this.currentImage++
+            }
         }, 100);
 
     }

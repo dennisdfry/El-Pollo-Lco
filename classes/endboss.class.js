@@ -1,7 +1,7 @@
 class Endboss extends MovableObject{
-    y = 360;
-    height = 60;
-    width = 80;
+    y = 50;
+    height = 400;
+    width = 250;
     currentImage = 0;
     Walking_Images = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -12,14 +12,14 @@ class Endboss extends MovableObject{
 
     constructor(){
         super().loadImage('img/4_enemie_boss_chicken/1_walk/G1.png');
-        this.x = 200 + Math.random() * 500;
+        this.x = 1200 ;
         this.speed = 0.15 + Math.random() * 0.25;
         this.loadImages(this.Walking_Images);
         this.animate();
     }
 
     animate() {
-        this.moveLeft();
+        // this.moveLeft();
         setInterval(() => {
             let i = this.currentImage % this.Walking_Images.length;
             let path = this.Walking_Images[i];

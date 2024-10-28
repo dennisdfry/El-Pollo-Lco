@@ -12,15 +12,15 @@ class MovableObject {
 
     applyGravaty() {
         setInterval(() => {
-            if(this.isAboveGround()){
+            if(this.y < 150){
             this.y -= this.speedY;
             this.speedY -= this.acceleration;
         }}, 1000 / 25);
     }
 
-    isAboveGround(){
-        return this.y < 150;
-    }
+    // isAboveGround(){
+    //     return this.y > 81;
+    // }
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
@@ -37,9 +37,10 @@ class MovableObject {
             this.x -= this.speed;
         }, 1000 / 60);
     }
-    playAnimation(Walking_Images) {
-        let i = this.currentImage % this.Walking_Images.length;
-        let path = this.Walking_Images[i];
+    playAnimation(images) {
+        console.log(images)
+        let i = this.currentImage % images.length;
+        let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++
     }

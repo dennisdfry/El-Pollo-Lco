@@ -37,17 +37,17 @@ class Character extends MovableObject {
         setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.x += this.speed;
-                this.otherDirection = false;
+                this.moveRight();
                 this.walking_sound.play();
+                this.otherDirection = false;
             };
             if (this.world.keyboard.LEFT &&  this.x > 0 ) {
-                this.x -= this.speed;
-                this.otherDirection = true;
+                this.moveLeft();
                 this.walking_sound.play();
+                this.otherDirection = true;
             };
-            if (this.world.keyboard.UP && !this.isAboveGround()) {
-               this.speedY = 20;
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+              this.jump();
             }
             this.world.camera_x = -this.x +100;
         }, 1000 / 60);

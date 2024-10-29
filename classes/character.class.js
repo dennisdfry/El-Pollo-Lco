@@ -1,5 +1,5 @@
 class Character extends MovableObject {
-    y = 80;
+    y = 160;
     height = 280;
     currentImage = 0;
     Walking_Images = [
@@ -45,21 +45,22 @@ class Character extends MovableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
                 this.walking_sound.play();
+            };
+            if (this.world.keyboard.UP && !this.isAboveGround()) {
+               this.speedY = 20;
             }
             this.world.camera_x = -this.x +100;
         }, 1000 / 60);
 
         setInterval(() => {
-            if(this.y < 150){
+            if(this.y < 160){
                 this.playAnimation(this.JUMPING_Images)
             }else{
             if (this.world.keyboard.RIGHT||this.world.keyboard.LEFT){
             this.playAnimation(this.Walking_Images)
             }}
+           
         }, 100);
-
-    }
-    jump() {
 
     }
 }

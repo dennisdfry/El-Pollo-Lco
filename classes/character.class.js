@@ -30,6 +30,11 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-55.png',
         'img/2_character_pepe/5_dead/D-56.png',
         'img/2_character_pepe/5_dead/D-57.png'
+    ];
+    isHurt_Images = [
+        'img/2_character_pepe/4_hurt/H-41.png',
+        'img/2_character_pepe/4_hurt/H-42.png',
+        'img/2_character_pepe/4_hurt/H-43.png'
     ]
     world;
     speed = 10;
@@ -39,6 +44,7 @@ class Character extends MovableObject {
         this.loadImages(this.DEAD_Images);
         this.loadImages(this.Walking_Images);
         this.loadImages(this.JUMPING_Images);
+        this.loadImages(this.isHurt_Images);
         this.applyGravaty();
         this.animate();
     }
@@ -68,13 +74,12 @@ class Character extends MovableObject {
             } else if
                 (this.isAboveGround()) {
                 this.playAnimation(this.JUMPING_Images)
-            } else {
+            } else if (this.isHurt()){
+                this.playAnimation(this.isHurt_Images)
+            }else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.Walking_Images)
                 }
-            }
+            }}, 100);
 
-        }, 100);
-
-    }
-}
+    }}

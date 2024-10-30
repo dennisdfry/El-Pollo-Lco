@@ -36,9 +36,9 @@ class Character extends MovableObject {
     walking_sound = new Audio('audio/walking_sound.mp3')
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
+        this.loadImages(this.DEAD_Images);
         this.loadImages(this.Walking_Images);
         this.loadImages(this.JUMPING_Images);
-        this.loadImages(this.DEAD_Images);
         this.applyGravaty();
         this.animate();
     }
@@ -63,7 +63,7 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.isDead) {
+            if (this.isDead()) {
                 this.playAnimation(this.DEAD_Images)
             } else if
                 (this.isAboveGround()) {

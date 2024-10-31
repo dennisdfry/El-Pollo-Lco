@@ -9,9 +9,11 @@ function init(){
 
 
 window.addEventListener("keydown", (e) => {
+    if(e.keyCode == 68){
+        keyboard.THROW = true;
+    };
     if(e.keyCode == 39){
         keyboard.RIGHT = true;
-     
     };
     if(e.keyCode == 37){
         keyboard.LEFT = true;
@@ -28,6 +30,9 @@ window.addEventListener("keydown", (e) => {
 });
 
 window.addEventListener("keyup", (e) => {
+    if(e.keyCode == 68){
+        keyboard.THROW = false;
+    };
     if(e.keyCode == 39){
         keyboard.RIGHT = false;
     };

@@ -21,6 +21,13 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+
+    sleep(){
+        let timePassed = new  Date().getTime() - this.lastHit;  
+        timePassed = timePassed / 1000;
+        return timePassed < 5; 
+    }
+
     isHurt(){
         let timePassed = new  Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;
@@ -29,6 +36,7 @@ class MovableObject extends DrawableObject {
     isDead(){
        return this.energy == 0;
     }
+
     isAboveGround() {
         if(this instanceof ThrowableObject){
             return true;

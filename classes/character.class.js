@@ -35,7 +35,20 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
         'img/2_character_pepe/4_hurt/H-43.png'
-    ]
+    ];
+    sleeping_IMAGES = [
+        'img/2_character_pepe/1_idle/long_idle/I-11.png',
+        'img/2_character_pepe/1_idle/long_idle/I-12.png',
+        'img/2_character_pepe/1_idle/long_idle/I-13.png',
+        'img/2_character_pepe/1_idle/long_idle/I-14.png',
+        'img/2_character_pepe/1_idle/long_idle/I-15.png',
+        'img/2_character_pepe/1_idle/long_idle/I-16.png',
+        'img/2_character_pepe/1_idle/long_idle/I-17.png',
+        'img/2_character_pepe/1_idle/long_idle/I-18.png',
+        'img/2_character_pepe/1_idle/long_idle/I-19.png',
+        'img/2_character_pepe/1_idle/long_idle/I-20.png'
+
+    ];
     world;
     speed = 10;
     walking_sound = new Audio('audio/walking_sound.mp3')
@@ -45,6 +58,7 @@ class Character extends MovableObject {
         this.loadImages(this.Walking_Images);
         this.loadImages(this.JUMPING_Images);
         this.loadImages(this.isHurt_Images);
+        this.loadImages(this.sleeping_IMAGES);
         this.applyGravaty();
         this.animate();
     }
@@ -69,6 +83,7 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
+            if(this.world.keyboard.RIGHT )
             if (this.isDead()) {
                 this.playAnimation(this.DEAD_Images)
             } else if

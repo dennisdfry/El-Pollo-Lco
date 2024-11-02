@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    
     applyGravaty() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -21,11 +22,15 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+    // nothingInteraction(){
+    //     if(!this.world.keyboard.SPACE && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.D ){
+    //         return false
+    //     }
+    // }
 
     sleep(){
-        let timePassed = new  Date().getTime() - this.lastHit;  
-        timePassed = timePassed / 1000;
-        return timePassed < 5; 
+       
+    
     }
 
     isHurt(){

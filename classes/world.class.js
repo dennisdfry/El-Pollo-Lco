@@ -7,11 +7,13 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     throwableObjects = [];
+    lastInteraction;
    
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, lastinteraction) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.lastInteraction = lastinteraction;
         this.draw();
         this.setWorld();
         this.run();

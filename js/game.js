@@ -1,10 +1,11 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let lastInteraction = new Date().getTime();
 
 function init(){
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+    world = new World(canvas, keyboard, lastInteraction);
 }
 
 
@@ -30,6 +31,7 @@ window.addEventListener("keydown", (e) => {
 });
 
 window.addEventListener("keyup", (e) => {
+    keyboard.lastInteraction = new Date().getTime();
     if(e.keyCode == 68){
         keyboard.D = false;
     };

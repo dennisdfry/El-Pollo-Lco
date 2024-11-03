@@ -22,14 +22,15 @@
     <script src="/js/game.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="templates.css">
-    <title>Document</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <title>El Pollo Loco</title>
 </head>
 
 <body class="margin-0">
     <div class="background-main d-flex jtf-center">
         <div class="d-flex jtf-center flex-column">
             <h1>El Pollo Loco</h1>
-            <button onclick="init()" class="btn pointer">Game Start</button>
+            <button onclick="init()" id="startButton"class="btn pointer">Game Start</button>
             <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
         </div>
     </div>

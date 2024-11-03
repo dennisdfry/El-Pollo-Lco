@@ -4,6 +4,9 @@ let keyboard = new Keyboard();
 
 function init(){
     canvas = document.getElementById('canvas');
+    startButton = document.getElementById('startButton');
+    startButton.classList.add('d-none');
+    canvas.classList.remove('d-none');
     world = new World(canvas, keyboard);
 }
 

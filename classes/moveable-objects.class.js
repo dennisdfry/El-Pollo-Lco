@@ -22,17 +22,6 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
-    // nothingInteraction(){
-    //     if(!this.world.keyboard.SPACE && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.D ){
-    //         return false
-    //     }
-    // }
-
-    sleep(){
-       
-    
-    }
-
     isHurt(){
         let timePassed = new  Date().getTime() - this.lastHit;
         timePassed = timePassed / 1000;

@@ -52,7 +52,8 @@ class Character extends MovableObject {
     world;
     speed = 10;
     walking_sound = new Audio('audio/walking_sound.mp3')
-    lastInteraction;
+    lastInteractionStart = new Date().getTime();
+    lastInteractionTime;
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.DEAD_Images);
@@ -84,16 +85,6 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-         
-          console.log(this.world.lastInteraction)
-          let timePassed = new  Date().getTime() - lastInteraction;  
-          console.log(timePassed)
-          timePassed = timePassed / 1000;
-        if(timePassed > 3){
-            this.playAnimation(this.sleeping_IMAGES)
-        }
-            if
-                (this.world.keyboard.RIGHT)
                 if (this.isDead()) {
                     this.playAnimation(this.DEAD_Images)
                 } else if

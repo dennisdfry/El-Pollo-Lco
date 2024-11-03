@@ -6,14 +6,15 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    coinBar = new CoinBar();
     throwableObjects = [];
     lastInteraction;
+    defaultSleeping = true;
    
-    constructor(canvas, keyboard, lastinteraction) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.lastInteraction = lastinteraction;
         this.draw();
         this.setWorld();
         this.run();
@@ -50,6 +51,7 @@ class World {
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.coinBar);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);

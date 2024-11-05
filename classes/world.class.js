@@ -59,6 +59,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
         // Draw wird immer wieder aufgerufen

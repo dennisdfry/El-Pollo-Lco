@@ -1,6 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let mexican_Melodie = new Audio('audio/210. Mexican.mp3')
+
 
 function init(){
     canvas = document.getElementById('canvas');
@@ -8,6 +10,7 @@ function init(){
     startButton.classList.add('d-none');
     canvas.classList.remove('d-none');
     world = new World(canvas, keyboard);
+    mexican_Melodie.play();
 }
 
 

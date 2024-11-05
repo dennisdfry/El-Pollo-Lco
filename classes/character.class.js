@@ -52,6 +52,7 @@ class Character extends MovableObject {
     world;
     speed = 10;
     walking_sound = new Audio('audio/walking_sound.mp3')
+    jumping_sound = new Audio('audio/springen.mp3')
     lastInteractionStart = new Date().getTime();
     lastInteractionTime;
     constructor() {
@@ -80,6 +81,8 @@ class Character extends MovableObject {
             };
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.jumping_sound.currentTime = 0; 
+                this.jumping_sound.play();
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);

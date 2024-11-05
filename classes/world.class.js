@@ -21,6 +21,7 @@ class World {
         this.run();
         this.collectCoins();
         this.collectBottles();
+        this.checkKillLittleChicken();
 
     }
 
@@ -49,6 +50,17 @@ class World {
             this.checkThowObjects();
         }, 200);
     }
+    
+    checkKillLittleChicken(){
+        setInterval(() => {
+            this.level.enemies.forEach((enemy, index) => {
+                if(this.character.isJumpToKill(enemy)){
+                    this.level.enemies.splice(index, 1)
+                    this.character.hit_sound.play();
+                }});
+        }, 200);
+
+    }
 
     checkThowObjects(){
         if(this.keyboard.D){
@@ -62,7 +74,6 @@ class World {
             if(this.character.isColliding(enemy)){
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
-                
             }});
     }
 

@@ -51,8 +51,9 @@ class Character extends MovableObject {
     ];
     world;
     speed = 10;
-    walking_sound = new Audio('audio/walking_sound.mp3')
-    jumping_sound = new Audio('audio/springen.mp3')
+    walking_sound = new Audio('audio/walking_sound.mp3');
+    jumping_sound = new Audio('audio/springen.mp3');
+    hit_sound = new Audio('audio/jump_kill.mp3');
     lastInteractionStart = new Date().getTime();
     lastInteractionTime;
     constructor() {

@@ -41,13 +41,20 @@ class MovableObject extends DrawableObject {
    
 
 
-
- 
+    isJumpToKill(mo) {
+        const isAbove = this.y +this.height < mo.y; 
+        console.log(this.y+this.height)
+        console.log(mo.y)
+        const isFalling = this.speedY < 0;      
+        console.log(isFalling)     
+        const isHorizontalOverlap = this.x + this.width > mo.x && this.x < mo.x;
+        return isAbove &&  isHorizontalOverlap && isFalling;
+    }
 
     isColliding(mo){
         return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
-
     }
+
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

@@ -28,10 +28,6 @@ class World {
        setInterval(() => {
         this.level.coins.forEach((coin, index)=>{
             if(this.character.isColliding(coin)){
-                console.log('check coin')
-                console.log(coin)
-                console.log(coin.x)
-                console.log(this.level.coins[index]);
                 this.level.coins.splice(index, 1);
             }})
        }, 200 ); 
@@ -39,9 +35,9 @@ class World {
 
     collectBottles(){
         setInterval(() => {
-            this.level.bottles.forEach((bottle) => {
+            this.level.bottles.forEach((bottle, index) => {
                 if(this.character.isColliding(bottle)){
-                    console.log('check bottle')
+                    this.level.bottles.splice(index, 1);
                 }
             });
         }, 200);

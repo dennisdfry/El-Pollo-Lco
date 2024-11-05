@@ -20,6 +20,7 @@ class World {
         this.setWorld();
         this.run();
         this.collectCoins();
+        this.collectBottles();
 
     }
 
@@ -27,9 +28,19 @@ class World {
        setInterval(() => {
         this.level.coins.forEach((coin)=>{
             if(this.character.isColliding(coin)){
-                console.log('check')
+                console.log('check coin')
             }})
        }, 200 ); 
+    }
+
+    collectBottles(){
+        setInterval(() => {
+            this.level.bottles.forEach((bottle) => {
+                if(this.character.isColliding(bottle)){
+                    console.log('check bottle')
+                }
+            });
+        }, 200);
     }
 
     run(){

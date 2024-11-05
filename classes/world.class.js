@@ -26,9 +26,13 @@ class World {
 
     collectCoins(){
        setInterval(() => {
-        this.level.coins.forEach((coin)=>{
+        this.level.coins.forEach((coin, index)=>{
             if(this.character.isColliding(coin)){
                 console.log('check coin')
+                console.log(coin)
+                console.log(coin.x)
+                console.log(this.level.coins[index]);
+                this.level.coins.splice(index, 1);
             }})
        }, 200 ); 
     }

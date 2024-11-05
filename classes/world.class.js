@@ -19,7 +19,17 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.collectCoins();
 
+    }
+
+    collectCoins(){
+       setInterval(() => {
+        this.level.coins.forEach((coin)=>{
+            if(this.character.isColliding(coin)){
+                console.log('check')
+            }})
+       }, 200 ); 
     }
 
     run(){

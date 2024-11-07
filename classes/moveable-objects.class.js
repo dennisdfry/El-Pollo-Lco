@@ -41,15 +41,39 @@ class MovableObject extends DrawableObject {
    
 
 
-    isJumpToKill(mo) {
-        const isAbove = this.y +this.height < mo.y; 
-        console.log(this.y+this.height)
-        console.log(mo.y)
-        const isFalling = this.speedY < 0;      
-        console.log(isFalling)     
-        const isHorizontalOverlap = this.x + this.width > mo.x && this.x < mo.x;
-        return isAbove &&  isHorizontalOverlap && isFalling;
-    }
+    // isJumpToKill(mo) {
+    //     const isAbove = this.y +this.height < mo.y; 
+    //     console.log(this.y+this.height)
+    //     console.log(mo.y)
+    //     const isFalling = this.speedY < 0;      
+    //     console.log(isFalling)     
+    //     const isHorizontalOverlap = this.x + this.width > mo.x && this.x < mo.x;
+    //     return isAbove &&  isHorizontalOverlap && isFalling;
+    // }
+    // isJumpToKill(mo) {
+    //     // Prüfen, ob der Charakter leicht über dem Gegner ist und sich nach unten bewegt
+    //     const isAbove = this.y + this.height > mo.y && this.y + this.height - mo.y < 15;  // Enger Bereich von oben (15 Pixel)
+    //     const isFalling = this.speedY < 0;  // Der Charakter muss sich nach unten bewegen
+    //     const isHorizontalOverlap = this.x + this.width > mo.x && this.x < mo.x + mo.width;  // Horizontale Überlappung
+    //     return isAbove && isHorizontalOverlap && isFalling;
+    // }
+  
+        isJumpToKill(mo) {
+            const isAbove = this.y + this.height >= mo.y && this.y + this.height <= mo.y + 20;
+            const isFalling = this.speedY < 0;
+            const isHorizontalOverlap = this.x + this.width > mo.x && this.x < mo.x + mo.width;
+    
+            // Debugging-Ausgabe zur Analyse der Kollision
+            // console.log("Checking collision with Chicken:");
+            // console.log(`Character Bottom: ${this.y + this.height}, Chicken Top: ${mo.y}`);
+            // console.log(`Vertical Overlap: ${isAbove}`);
+            // console.log(`Falling: ${isFalling}`);
+            // console.log(`Horizontal Overlap: ${isHorizontalOverlap}`);
+    
+            return isAbove && isHorizontalOverlap && isFalling;
+        }
+  
+
 
     isColliding(mo){
         return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;

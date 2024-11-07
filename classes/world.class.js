@@ -8,6 +8,7 @@ class World {
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
+    coinClass = new Coins();
     throwableObjects = [];
     lastInteraction;
     defaultSleeping = true;
@@ -30,6 +31,7 @@ class World {
         this.level.coins.forEach((coin, index)=>{
             if(this.character.isColliding(coin)){
                 this.level.coins.splice(index, 1);
+                
             }})
        }, 200 ); 
     }
@@ -51,15 +53,18 @@ class World {
         }, 200);
     }
     
-    checkKillLittleChicken(){
+ 
+    checkKillLittleChicken() {
         setInterval(() => {
             this.level.enemies.forEach((enemy, index) => {
-                if(this.character.isJumpToKill(enemy)){
-                    this.level.enemies.splice(index, 1)
-                    this.character.hit_sound.play();
-                }});
-        }, 200);
-
+                if (this.character.isJumpToKill(enemy)) {
+                    this.level.enemies.splice(index, 1);  
+                    this.character.hit_sound.play();  
+                    console.log(index)   
+                    console.log(this.level.enemies)
+                }
+            });
+        }, 1000/25);
     }
 
     checkThowObjects(){

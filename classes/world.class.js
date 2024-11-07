@@ -1,5 +1,6 @@
 class World {
     character = new Character();
+    chicken = new Chicken();
     level = level1;
     canvas;
     ctx;
@@ -12,6 +13,7 @@ class World {
     throwableObjects = [];
     lastInteraction;
     defaultSleeping = true;
+    defaultdeathChicken = [];
    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -53,18 +55,25 @@ class World {
         }, 200);
     }
     
- 
     checkKillLittleChicken() {
         setInterval(() => {
             this.level.enemies.forEach((enemy, index) => {
                 if (this.character.isJumpToKill(enemy)) {
-                    this.level.enemies.splice(index, 1);  
-                    this.character.hit_sound.play();  
-                    console.log(index)   
-                    console.log(this.level.enemies)
+                    this.level.enemies[index] = 'img/3_enemies_chicken/chicken_normal/2_dead';
+                         this.level.enemies.splice(index, 1); 
+                //    y = this.level.enemies[index].y;
+                //    x = this.level.enemies[index].x;
+                //    width = this.level.enemies[index].width;
+                //    height = this.level.enemies[index].height;
+                //    img = 'img/3_enemies_chicken/chicken_normal/2_dead';
+               
+                //     this.draw 
+                    // this.level.enemies[index].defaultdeathChicken = true
+                    // enemy.defaultdeathChicken = true;
+                    console.log(this.level.enemies[index].defaultdeathChicken);
                 }
             });
-        }, 1000/25);
+        }, 1000 / 25);
     }
 
     checkThowObjects(){

@@ -10,7 +10,7 @@ const level1 = new Level(
         new Cloud('img/5_background/layers/4_clouds/1.png', 150, 10),
         new Cloud('img/5_background/layers/4_clouds/2.png', 250, 70),
         new Cloud('img/5_background/layers/4_clouds/2.png', 80, 70),
-     
+
     ],
     [
         new BackgroundObjects('img/5_background/layers/air.png', -719),
@@ -84,6 +84,12 @@ const level1 = new Level(
         new Coins(),
         new Coins(),
         new Coins()
+    ],
+    [
+        new ThrowableObject(),
+        new ThrowableObject(),
+        new ThrowableObject(),
+        new ThrowableObject(),
+        new ThrowableObject()
     ]
-    
 );

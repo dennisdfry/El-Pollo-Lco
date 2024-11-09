@@ -26,6 +26,7 @@ class World {
         this.collectCoins();
         this.collectBottles();
         this.checkKillLittleChicken();
+       
 
     }
 
@@ -53,6 +54,7 @@ class World {
         setInterval(() => {
            this.checkCollision();
             this.checkThowObjects();
+            this. checkCollisionEndboss();
         }, 200);
     }
     
@@ -70,9 +72,10 @@ class World {
     }
 
     checkThowObjects(){
-        if(this.keyboard.D){
+        if(this.keyboard.D && this.throwableObjects.length < 10){
             let bottle = new ThrowableObject(this.character.x+100, this.character.y+100);
             this.throwableObjects.push(bottle);
+            console.log(bottle)
         }
     }
 
@@ -81,6 +84,13 @@ class World {
             if(this.character.isColliding(enemy)){
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
+            }});
+    }
+    checkCollisionEndboss(){
+        this.level.bottles.forEach((bottle) => {
+            if(this.endboss.isColliding(bottle)){
+                this.endboss.hit();
+                this.enbossStatusbar.setPercentage(this.endboss.energy);
             }});
     }
 

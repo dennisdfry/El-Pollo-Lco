@@ -6,6 +6,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    enbossStatusbar = new EndbossStatusbar();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
@@ -59,18 +60,10 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy, index) => {
                 if (this.character.isJumpToKill(enemy)) {
-                    this.level.enemies[index] = 'img/3_enemies_chicken/chicken_normal/2_dead';
+                  let x =  this.level.enemies[index].x;
+                  console.log(x)
+                  new deathChicken(x);
                          this.level.enemies.splice(index, 1); 
-                //    y = this.level.enemies[index].y;
-                //    x = this.level.enemies[index].x;
-                //    width = this.level.enemies[index].width;
-                //    height = this.level.enemies[index].height;
-                //    img = 'img/3_enemies_chicken/chicken_normal/2_dead';
-               
-                //     this.draw 
-                    // this.level.enemies[index].defaultdeathChicken = true
-                    // enemy.defaultdeathChicken = true;
-                    console.log(this.level.enemies[index].defaultdeathChicken);
                 }
             });
         }, 1000 / 25);
@@ -100,6 +93,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
+        this.addToMap(this.enbossStatusbar);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);

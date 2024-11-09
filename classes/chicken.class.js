@@ -21,7 +21,7 @@ class Chicken extends MovableObject {
 
 
     animate() {
-        if(this.defaultdeathChicken == false){
+       
         setInterval(() => {
             this.moveLeft();
         }, 1000/60);
@@ -32,10 +32,18 @@ class Chicken extends MovableObject {
             this.img = this.imageCache[path];
             this.currentImage++
         }, 100);
-    }else{
-        console.log('wahr')
-}}
+  
+}
+}
 
-
-
+class deathChicken extends MovableObject{
+    img = 'img/3_enemies_chicken/chicken_normal/2_dead';
+    height = 60;
+    width = 80;
+    y = 360;
+    x;
+    constructor(x){
+        super().loadImage(this.img);
+        console.log(x)
+    }
 }

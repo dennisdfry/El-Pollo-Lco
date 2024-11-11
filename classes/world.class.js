@@ -40,11 +40,28 @@ class World {
        }, 200 ); 
     }
 
-    collectBottles(){
+    // collectBottles(){
+    //     setInterval(() => {
+    //         this.level.bottles.forEach((bottle, index) => {
+    //             if(this.character.isColliding(bottle)){
+    //                 this.level.bottles.splice(index, 1);
+    //                 this.level.throwableObjects.push(bottle);
+    //                 console.log(this.level.throwableObjects);
+    //             }
+    //         });
+    //     }, 200);
+    // }
+    collectBottles() {
         setInterval(() => {
             this.level.bottles.forEach((bottle, index) => {
-                if(this.character.isColliding(bottle)){
+                if (this.character.isColliding(bottle)) {
                     this.level.bottles.splice(index, 1);
+    
+                    // Erstelle ein neues ThrowableObject basierend auf der Position von `bottle`
+                    let throwableBottle = new ThrowableObject();
+                    this.level.throwableObjects.push(throwableBottle);
+    
+                    console.log(this.level.throwableObjects);
                 }
             });
         }, 200);
@@ -54,7 +71,6 @@ class World {
         setInterval(() => {
            this.checkCollision();
             this.checkThowObjects();
-            this. checkCollisionEndboss();
         }, 200);
     }
     
@@ -72,7 +88,7 @@ class World {
     }
 
     checkThowObjects(){
-        if(this.keyboard.D && this.throwableObjects.length < 10){
+        if(this.keyboard.D){
             let bottle = new ThrowableObject(this.character.x+100, this.character.y+100);
             this.throwableObjects.push(bottle);
             console.log(bottle)
@@ -86,13 +102,13 @@ class World {
                 this.statusBar.setPercentage(this.character.energy);
             }});
     }
-    checkCollisionEndboss(){
-        this.level.bottles.forEach((bottle) => {
-            if(this.endboss.isColliding(bottle)){
-                this.endboss.hit();
-                this.enbossStatusbar.setPercentage(this.endboss.energy);
-            }});
-    }
+    // checkCollisionEndboss(){
+    //     this.level.bottles.forEach((bottle) => {
+    //         if(this.endboss.isColliding(bottle)){
+    //             this.endboss.hit();
+    //             this.enbossStatusbar.setPercentage(this.endboss.energy);
+    //         }});
+    // }
 
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);

@@ -40,27 +40,13 @@ class World {
        }, 200 ); 
     }
 
-    // collectBottles(){
-    //     setInterval(() => {
-    //         this.level.bottles.forEach((bottle, index) => {
-    //             if(this.character.isColliding(bottle)){
-    //                 this.level.bottles.splice(index, 1);
-    //                 this.level.throwableObjects.push(bottle);
-    //                 console.log(this.level.throwableObjects);
-    //             }
-    //         });
-    //     }, 200);
-    // }
     collectBottles() {
         setInterval(() => {
             this.level.bottles.forEach((bottle, index) => {
                 if (this.character.isColliding(bottle)) {
                     this.level.bottles.splice(index, 1);
-    
-                    // Erstelle ein neues ThrowableObject basierend auf der Position von `bottle`
                     let throwableBottle = new ThrowableObject();
                     this.level.throwableObjects.push(throwableBottle);
-    
                     console.log(this.level.throwableObjects);
                 }
             });
@@ -90,9 +76,14 @@ class World {
     checkThowObjects(){
         if(this.keyboard.D){
             let bottle = new ThrowableObject(this.character.x+100, this.character.y+100);
+            if(this.level.throwableObjects < 1){
+                return
+            }else{
+            this.level.throwableObjects.splice(bottle, 1);
             this.throwableObjects.push(bottle);
+            console.log(this.level.throwableObjects);
             console.log(bottle)
-        }
+        }}
     }
 
     checkCollision(){

@@ -1,6 +1,7 @@
 class World {
     character = new Character();
     chicken = new Chicken();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -75,14 +76,15 @@ class World {
 
     checkThowObjects(){
         if(this.keyboard.D){
+            this.checkCollisionEndboss();
             let bottle = new ThrowableObject(this.character.x+100, this.character.y+100);
             if(this.level.throwableObjects < 1){
                 return
             }else{
             this.level.throwableObjects.splice(bottle, 1);
             this.throwableObjects.push(bottle);
-            console.log(this.level.throwableObjects);
-            console.log(bottle)
+            // console.log(this.level.throwableObjects);
+            // console.log(bottle)
         }}
     }
 
@@ -93,13 +95,27 @@ class World {
                 this.statusBar.setPercentage(this.character.energy);
             }});
     }
-    // checkCollisionEndboss(){
-    //     this.level.bottles.forEach((bottle) => {
-    //         if(this.endboss.isColliding(bottle)){
-    //             this.endboss.hit();
-    //             this.enbossStatusbar.setPercentage(this.endboss.energy);
-    //         }});
-    // }
+    checkCollisionEndboss(){
+        this.level.throwableObjects.forEach((bottle) => {
+            setInterval(() => {
+                  if(this.endboss.isCollidingEndboss(bottle)){
+                console.log('treffer');
+                this.level.endboss.hit();
+                this.enbossStatusbar.setPercentage(this.level.endboss.energy);
+            }});
+            }, 2000);
+          
+    }
+    
+    checkCollisionWithEndboss() {
+        // Überprüfe, ob die Flasche mit dem Endboss kollidiert
+        if (this.isColliding(this.world.level.endboss)) {
+            console.log("Treffer auf den Endboss!");
+            this.world.level.endboss.hit(); // Schaden hinzufügen
+            // Optional: Du kannst die Flasche zerstören oder zurücksetzen, wenn sie den Endboss getroffen hat
+            this.world.throwableObjects.splice(this.world.throwableObjects.indexOf(this), 1);
+        }
+    }
 
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);

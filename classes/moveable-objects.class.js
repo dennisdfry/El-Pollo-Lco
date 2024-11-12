@@ -6,11 +6,23 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
 
-    applyGravaty() {
+    applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+    applyGravityBottle() {
+        this.gravityInterval = setInterval(() => {
+            if (this.isAboveGround() || this.speedY > 0) {
+                this.y -= this.speedY;   // Bewegt die Flasche vertikal
+                this.speedY -= this.acceleration;  // Reduziert speedY durch Schwerkraft
+            } else {
+                // Stoppe die Bewegung, wenn der Boden erreicht ist
+                clearInterval(this.gravityInterval);
+                clearInterval(this.movementInterval);
             }
         }, 1000 / 25);
     }
@@ -51,6 +63,9 @@ class MovableObject extends DrawableObject {
         return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
     }
 
+    isCollidingEndboss(bottle){
+       console.log(bottle)
+    }
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

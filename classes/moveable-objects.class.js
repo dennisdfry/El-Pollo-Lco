@@ -63,8 +63,16 @@ class MovableObject extends DrawableObject {
         return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
     }
 
-    isCollidingEndboss(bottle){
-       console.log(bottle)
+    isCollidingEndboss(bottle, endboss){
+        console.log(bottle);
+        console.log(endboss);
+        // return (
+        //     this.level.endboss.x < bottle.x + bottle.width &&
+        //     this.level.endboss.x + this.level.endboss.width > bottle.x &&
+        //     this.level.endboss.y < bottle.y + bottle.height &&
+        //     this.level.endboss.y + this.level.endboss.height > bottle.y
+        // );
+    //    console.log(bottle)
     }
     playAnimation(images) {
         let i = this.currentImage % images.length;

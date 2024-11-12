@@ -57,7 +57,7 @@ class World {
     run(){
         setInterval(() => {
            this.checkCollision();
-            this.checkThowObjects();
+            this.checkThrowObjects();
         }, 200);
     }
     
@@ -74,7 +74,7 @@ class World {
         }, 1000 / 25);
     }
 
-    checkThowObjects(){
+    checkThrowObjects(){
         if(this.keyboard.D){
             this.checkCollisionEndboss();
             let bottle = new ThrowableObject(this.character.x+100, this.character.y+100);
@@ -83,8 +83,8 @@ class World {
             }else{
             this.level.throwableObjects.splice(bottle, 1);
             this.throwableObjects.push(bottle);
-            // console.log(this.level.throwableObjects);
-            // console.log(bottle)
+            console.log(this.level.throwableObjects);
+            console.log(bottle)
         }}
     }
 
@@ -98,22 +98,21 @@ class World {
     checkCollisionEndboss(){
         this.level.throwableObjects.forEach((bottle) => {
             setInterval(() => {
-                  if(this.endboss.isCollidingEndboss(bottle)){
+                  if(this.endboss.isCollidingEndboss(bottle, this.endboss)){
                 console.log('treffer');
-                this.level.endboss.hit();
-                this.enbossStatusbar.setPercentage(this.level.endboss.energy);
+                // this.level.endboss.hit();
+                // this.enbossStatusbar.setPercentage(this.level.endboss.energy);
+                // this.world.level.endboss.hit(); 
+                // this.world.throwableObjects.splice(this.world.throwableObjects.indexOf(this), 1);
             }});
-            }, 2000);
+            }, 200);
           
     }
     
     checkCollisionWithEndboss() {
-        // Überprüfe, ob die Flasche mit dem Endboss kollidiert
         if (this.isColliding(this.world.level.endboss)) {
             console.log("Treffer auf den Endboss!");
-            this.world.level.endboss.hit(); // Schaden hinzufügen
-            // Optional: Du kannst die Flasche zerstören oder zurücksetzen, wenn sie den Endboss getroffen hat
-            this.world.throwableObjects.splice(this.world.throwableObjects.indexOf(this), 1);
+           
         }
     }
 

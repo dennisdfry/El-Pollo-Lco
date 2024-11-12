@@ -5,6 +5,8 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    gravityInterval;
+    movementInterval = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -19,10 +21,6 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;   // Bewegt die Flasche vertikal
                 this.speedY -= this.acceleration;  // Reduziert speedY durch Schwerkraft
-            } else {
-                // Stoppe die Bewegung, wenn der Boden erreicht ist
-                clearInterval(this.gravityInterval);
-                clearInterval(this.movementInterval);
             }
         }, 1000 / 25);
     }
@@ -64,16 +62,14 @@ class MovableObject extends DrawableObject {
     }
 
     isCollidingEndboss(bottle, endboss){
-        console.log(bottle);
-        console.log(endboss);
-        // return (
-        //     this.level.endboss.x < bottle.x + bottle.width &&
-        //     this.level.endboss.x + this.level.endboss.width > bottle.x &&
-        //     this.level.endboss.y < bottle.y + bottle.height &&
-        //     this.level.endboss.y + this.level.endboss.height > bottle.y
-        // );
-    //    console.log(bottle)
+        return (
+            endboss.x < bottle.x + bottle.width &&
+            endboss.x + endboss.width > bottle.x &&
+            endboss.y < bottle.y + bottle.height &&
+            endboss.y + endboss.height > bottle.y
+        );
     }
+
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];

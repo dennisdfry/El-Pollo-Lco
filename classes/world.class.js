@@ -7,7 +7,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    enbossStatusbar = new EndbossStatusbar();
+    endbossStatusbar = new EndbossStatusbar();
     statusBar = new StatusBar();
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
@@ -27,8 +27,6 @@ class World {
         this.collectCoins();
         this.collectBottles();
         this.checkKillLittleChicken();
-       
-
     }
 
     collectCoins(){
@@ -46,18 +44,20 @@ class World {
             this.level.bottles.forEach((bottle, index) => {
                 if (this.character.isColliding(bottle)) {
                     this.level.bottles.splice(index, 1);
-                    let throwableBottle = new ThrowableObject();
-                    this.level.throwableObjects.push(throwableBottle);
-                    console.log(this.level.throwableObjects);
+                    let throwbottle =  new ThrowableObject();
+                   this.throwableObjects.push(throwbottle);
+                   console.log(this.throwableObjects)
                 }
             });
         }, 200);
     }
 
     run(){
+        console.log(this.throwableObjects)
         setInterval(() => {
            this.checkCollision();
             this.checkThrowObjects();
+           
         }, 200);
     }
     
@@ -76,17 +76,18 @@ class World {
 
     checkThrowObjects(){
         if(this.keyboard.D){
+            console.log(this.throwableObjects);
             this.checkCollisionEndboss();
-            let bottle = new ThrowableObject(this.character.x+100, this.character.y+100);
-            if(this.level.throwableObjects < 1){
+            let bottle = new ThrowableObject(this.character.x, this.character.y);
+            if(this.throwableObjects > 10){
                 return
-            }else{
-            this.level.throwableObjects.splice(bottle, 1);
+            }
             this.throwableObjects.push(bottle);
-            console.log(this.level.throwableObjects);
-            console.log(bottle)
-        }}
-    }
+           
+      
+        }
+        }
+    
 
     checkCollision(){
         this.level.enemies.forEach((enemy) => {
@@ -100,10 +101,6 @@ class World {
             setInterval(() => {
                   if(this.endboss.isCollidingEndboss(bottle, this.endboss)){
                 console.log('treffer');
-                // this.level.endboss.hit();
-                // this.enbossStatusbar.setPercentage(this.level.endboss.energy);
-                // this.world.level.endboss.hit(); 
-                // this.world.throwableObjects.splice(this.world.throwableObjects.indexOf(this), 1);
             }});
             }, 200);
           
@@ -125,7 +122,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
-        this.addToMap(this.enbossStatusbar);
+        this.addToMap(this.endbossStatusbar);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);

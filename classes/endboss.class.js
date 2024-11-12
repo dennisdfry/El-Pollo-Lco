@@ -9,10 +9,10 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/1_walk/G3.png',
         'img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
-
+  
     constructor(){
         super().loadImage('img/4_enemie_boss_chicken/1_walk/G1.png');
-        this.x = 2400 ;
+        this.x = 3200 ;
         this.speed = 0.15 + Math.random() * 0.25;
         this.loadImages(this.Walking_Images);
         this.animate();
@@ -25,5 +25,4 @@ class Endboss extends MovableObject{
             this.img = this.imageCache[path];
             this.currentImage++
         }, 100);
-
     }}

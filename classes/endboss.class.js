@@ -51,8 +51,10 @@ class Endboss extends MovableObject{
     animate() {
         setInterval(() => {
             this.playAnimation(this.Alert_Images);
-            if (!this.firstContact){
-                this.playAnimation(this.Alert_Images);
+            if (this.firstContact){
+                
+            }else{
+                this.playAnimation(this.Walking_Images);
             }
             // let i = this.currentImage % this.Walking_Images.length;
             // let path = this.Walking_Images[i];

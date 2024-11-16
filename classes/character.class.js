@@ -72,6 +72,10 @@ class Character extends MovableObject {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
+                if(this.firstContactEndboss(this.x)){
+                    console.log('erricht')
+                    this.world.level.endboss.firstContact = true;
+                }
                 this.walking_sound.play();
                 this.otherDirection = false;
             };

@@ -45,17 +45,15 @@ class Endboss extends MovableObject{
     }
     endbossDead(){
         if(this.energyEndboss == 0){
-            return
+            return true
         }
     }
     animate() {
         setInterval(() => {
-            this.playAnimation(this.Alert_Images);
-            if (this.firstContact){
-                
-            }else{
-                this.playAnimation(this.Walking_Images);
-            }
+             if( this.endbossDead()){
+                console.log('tod')
+                this.playAnimation(this.Dead_Images)
+                 }
             // let i = this.currentImage % this.Walking_Images.length;
             // let path = this.Walking_Images[i];
             // this.img = this.imageCache[path];

@@ -109,7 +109,7 @@ class World {
         if(this.level.endboss.isColliding(bottle)){
             console.log('treffer');
             this.level.endboss.hitEndboss();
-            this.statusBar.setPercentage(this.level.endboss.energy);
+            this.endbossStatusbar.setPercentageEndboss(this.level.endboss.energyEndboss);
         }
     }
     

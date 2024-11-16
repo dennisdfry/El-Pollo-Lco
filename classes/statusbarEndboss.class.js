@@ -8,7 +8,7 @@ class EndbossStatusbar extends DrawableObject{
         'img/7_statusbars/2_statusbar_endboss/blue/blue100.png'
     ];
 
-    percentage = 100;
+    percentage;
 
     constructor(){
         super()
@@ -17,10 +17,10 @@ class EndbossStatusbar extends DrawableObject{
         this.y = 0;
         this.width = 200;
         this.height = 60;
-        this.setPercentage(100);
+        this.setPercentageEndboss(100);
     }
 
-setPercentage(percentage){
+setPercentageEndboss(percentage){
     this.percentage = percentage;
     let path = this.Images[this.resolveImageIndex()];
     this.img = this.imageCache[path];

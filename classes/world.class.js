@@ -16,6 +16,7 @@ class World {
     lastInteraction;
     defaultSleeping = true;
     defaultdeathChicken = [];
+    bottleCounter = 0;
    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -46,6 +47,7 @@ class World {
                     this.level.bottles.splice(index, 1);
                     let throwbottle =  new ThrowableObject();
                    this.throwableObjects.push(throwbottle);
+                   this.bottleCounter++;
                    console.log(this.throwableObjects)
                 }
             });
@@ -53,36 +55,33 @@ class World {
     }
 
     run(){
-        console.log(this.throwableObjects)
         setInterval(() => {
-           this.checkCollision();
             this.checkThrowObjects();
            
         }, 200);
+        setInterval(() => {
+            this.checkCollision();  
+        }, 25);
     }
     
     checkKillLittleChicken() {
-        setInterval(() => {
             this.level.enemies.forEach((enemy, index) => {
                 if (this.character.isJumpToKill(enemy)) {
                   let x =  this.level.enemies[index].x;
-                  console.log(x)
                   new deathChicken(x);
                          this.level.enemies.splice(index, 1); 
-                }
-            });
-        }, 1000 / 25);
+                }});
     }
 
     checkThrowObjects(){
-        if(this.keyboard.D){
-            console.log(this.throwableObjects);
-            this.checkCollisionEndboss();
+        if(this.keyboard.D && this.bottleCounter > 0){  
             let bottle = new ThrowableObject(this.character.x, this.character.y);
+            console.log(bottle)
             if(this.throwableObjects > 10){
                 return
             }
             this.throwableObjects.push(bottle);
+            this.bottleCounter--;
            
       
         }
@@ -90,28 +89,22 @@ class World {
     
 
     checkCollision(){
+        this.checkCollisionWithLittleChicken();
+        // this.checkCollisionEndboss();
+        this.checkKillLittleChicken();
+    }
+
+    checkCollisionWithLittleChicken(){
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy)){
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }});
     }
-    checkCollisionEndboss(){
-        this.level.throwableObjects.forEach((bottle) => {
-            setInterval(() => {
-                  if(this.endboss.isCollidingEndboss(bottle, this.endboss)){
-                console.log('treffer');
-            }});
-            }, 200);
-          
-    }
+
+
     
-    checkCollisionWithEndboss() {
-        if (this.isColliding(this.world.level.endboss)) {
-            console.log("Treffer auf den Endboss!");
-           
-        }
-    }
+
 
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);

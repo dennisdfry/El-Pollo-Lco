@@ -9,6 +9,8 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/1_walk/G3.png',
         'img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
+    energyEndboss = 100;
+    firstContact = false;
   
     constructor(){
         super().loadImage('img/4_enemie_boss_chicken/1_walk/G1.png');
@@ -17,7 +19,12 @@ class Endboss extends MovableObject{
         this.loadImages(this.Walking_Images);
         this.animate();
     }
-
+    hitEndboss(){
+        this.energyEndboss -= 10;
+        if(this.energyEndboss < 0){
+            energyEndboss = 0;
+        }
+    }
     animate() {
         setInterval(() => {
             let i = this.currentImage % this.Walking_Images.length;

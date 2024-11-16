@@ -56,7 +56,7 @@ class World {
     run(){
         setInterval(() => {
             this.checkThrowObjects();
-           
+            this.checkThrowableObjectsWithCollisionEndboss();
         }, 200);
         setInterval(() => {
             this.checkCollision();  
@@ -86,7 +86,7 @@ class World {
 
     checkCollision(){
         this.checkCollisionWithLittleChicken();
-        this.checkThrowableObjectsWithCollisionEndboss();
+      
         this.checkKillLittleChicken();
     }
 
@@ -107,7 +107,9 @@ class World {
     checkCollisionBottleWithEndboss(bottle, index){
         
         if(this.level.endboss.isColliding(bottle)){
-            console.log(this.level.Endboss)
+            console.log('treffer');
+            this.level.endboss.hitEndboss();
+            this.statusBar.setPercentage(this.level.endboss.energy);
         }
     }
     
@@ -120,20 +122,17 @@ class World {
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
-        
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.endbossStatusbar);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
-        // this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.level.endboss);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
-        // Draw wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
             self.draw();

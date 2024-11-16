@@ -1,7 +1,6 @@
 class World {
     character = new Character();
     chicken = new Chicken();
-    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -77,9 +76,6 @@ class World {
         if(this.keyboard.D && this.bottleCounter > 0){  
             let bottle = new ThrowableObject(this.character.x, this.character.y);
             console.log(bottle)
-            if(this.throwableObjects > 10){
-                return
-            }
             this.throwableObjects.push(bottle);
             this.bottleCounter--;
            
@@ -90,7 +86,7 @@ class World {
 
     checkCollision(){
         this.checkCollisionWithLittleChicken();
-        // this.checkCollisionEndboss();
+        this.checkThrowableObjectsWithCollisionEndboss();
         this.checkKillLittleChicken();
     }
 
@@ -102,7 +98,18 @@ class World {
             }});
     }
 
+    checkThrowableObjectsWithCollisionEndboss(){
+        this.throwableObjects.forEach((bottle, index)=>{
+            this.checkCollisionBottleWithEndboss(bottle, index);
+        })
+    }
 
+    checkCollisionBottleWithEndboss(bottle, index){
+        
+        if(this.level.endboss.isColliding(bottle)){
+            console.log(this.level.Endboss)
+        }
+    }
     
 
 
@@ -113,13 +120,14 @@ class World {
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.level.endboss);
         this.addToMap(this.coinBar);
         this.addToMap(this.bottleBar);
         this.addToMap(this.endbossStatusbar);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
-        this.addObjectsToMap(this.level.endboss);
+        // this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);

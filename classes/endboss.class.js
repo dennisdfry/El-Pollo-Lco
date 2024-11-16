@@ -25,6 +25,12 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/2_alert/G12.png'
         
     ];
+
+    Hurt_Images = [
+        'img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'img/4_enemie_boss_chicken/4_hurt/G23.png'
+    ];
     energyEndboss = 100;
     firstContact = false;
   
@@ -50,13 +56,49 @@ class Endboss extends MovableObject{
     }
     animate() {
         setInterval(() => {
-             if( this.endbossDead()){
-                console.log('tod')
-                this.playAnimation(this.Dead_Images)
-                 }
-            // let i = this.currentImage % this.Walking_Images.length;
-            // let path = this.Walking_Images[i];
-            // this.img = this.imageCache[path];
-            // this.currentImage++
+            this.finalBossAnnimation();  
          }, 200);
-    }}
+    }
+    finalBossAnnimation() {
+        if (this.endbossDead) {
+            this.finalBossAnnimationDead();
+        }
+        else if (this.isHurtFinalBoss()) {
+            this.finalBossAnnimationHurt();
+        }        
+        else if (this.i < 15) {
+            this.finalBossAnnimationAlert();     
+        }
+        else if (this.i < 30) {
+            this.finalBossAnnimationAttack();
+        }
+        else {        
+            this.finalBossAnnimationWalk();
+        }
+        // this.i++;    
+        // this.finalBossFirstContact();   
+    }
+
+    finalBossAnnimationAlert() {
+        this.playAnnimation(this.Alert_Images); 
+    }
+
+    finalBossAnnimationWalk() {
+        this.playAnnimation(this.Walking_Images);
+    }
+
+    finalBossAnnimationHurt() {
+        this.playAnnimation(this.Hurt_Images);
+    }
+
+    finalBossAnnimationDead() {
+        this.playAnimation(this.Dead_Images);
+        // world.gameOver = true;
+        // world.background_music.pause()
+        setTimeout(() => {
+            // this.clearAllIntervals();
+            // this.playSound(world.win_sound);
+            // gameOverWin();
+        }, 1500);
+    }
+}

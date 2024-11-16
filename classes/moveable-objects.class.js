@@ -53,7 +53,12 @@ class MovableObject extends DrawableObject {
         if(character_x == 2850){
            return true
         }
-       
+     }
+
+     secondContactEndboss(character_x){
+        if(character_x == 2900){
+            return true
+         }
      }
     isJumpToKill(mo) {
         const isAbove = this.y + this.height >= mo.y && this.y + this.height <= mo.y + 20;

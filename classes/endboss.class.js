@@ -1,20 +1,19 @@
-class Endboss extends MovableObject{
-    y = 50;
+
+class Endboss extends MovableObject {
+
+    width = 200;
     height = 400;
-    width = 250;
-    currentImage = 0;
-    Walking_Images = [
+    y = 0;
+    i = 0;
+
+    IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
         'img/4_enemie_boss_chicken/1_walk/G3.png',
-        'img/4_enemie_boss_chicken/1_walk/G4.png'
+        'img/4_enemie_boss_chicken/1_walk/G4.png',
     ];
-    Dead_Images =[
-        'img/4_enemie_boss_chicken/5_dead/G24.png',
-        'img/4_enemie_boss_chicken/5_dead/G25.png',
-        'img/4_enemie_boss_chicken/5_dead/G26.png'
-    ];
-    Alert_Images = [
+
+    IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
         'img/4_enemie_boss_chicken/2_alert/G7.png',
@@ -22,17 +21,10 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/2_alert/G9.png',
         'img/4_enemie_boss_chicken/2_alert/G10.png',
         'img/4_enemie_boss_chicken/2_alert/G11.png',
-        'img/4_enemie_boss_chicken/2_alert/G12.png'
-        
+        'img/4_enemie_boss_chicken/2_alert/G12.png',
     ];
 
-    Hurt_Images = [
-        'img/4_enemie_boss_chicken/4_hurt/G21.png',
-        'img/4_enemie_boss_chicken/4_hurt/G22.png',
-        'img/4_enemie_boss_chicken/4_hurt/G23.png'
-    ];
-
-    Attack_Images = [
+    IMAGES_ATTACK = [
         'img/4_enemie_boss_chicken/3_attack/G13.png',
         'img/4_enemie_boss_chicken/3_attack/G14.png',
         'img/4_enemie_boss_chicken/3_attack/G15.png',
@@ -40,82 +32,177 @@ class Endboss extends MovableObject{
         'img/4_enemie_boss_chicken/3_attack/G17.png',
         'img/4_enemie_boss_chicken/3_attack/G18.png',
         'img/4_enemie_boss_chicken/3_attack/G19.png',
-        'img/4_enemie_boss_chicken/3_attack/G20.png'
+        'img/4_enemie_boss_chicken/3_attack/G20.png',
     ];
 
-    energyEndboss = 100;
-    firstContact = false;
-    secondContact = false;
+    IMAGES_HURT = [
+        'img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'img/4_enemie_boss_chicken/4_hurt/G23.png',
+    ];
 
-    constructor(){
-        super().loadImage('img/4_enemie_boss_chicken/1_walk/G1.png');
-        this.x = 3200 ;
-        // this.speed = 0.15 + Math.random() * 0.25;
-        this.loadImages(this.Walking_Images);
-        this.loadImages(this.Alert_Images);
-        this.loadImages(this.Dead_Images);
-        this.loadImages(this.Hurt_Images);
-        this.loadImages(this.Attack_Images);
+    IMAGES_DEAD = [
+        'img/4_enemie_boss_chicken/5_dead/G24.png',
+        'img/4_enemie_boss_chicken/5_dead/G25.png',
+        'img/4_enemie_boss_chicken/5_dead/G26.png',
+    ];
+
+    hadFirstContact = false;
+
+    constructor() {
+        super().loadImage(this.IMAGES_ALERT[0]);
+        this.loadImages(this.IMAGES_WALK);
+        this.loadImages(this.IMAGES_ALERT);
+        this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DEAD);
+        this.speed = 2;
+        this.x = 2000;
         this.animate();
     }
-    hitEndboss(){
-        this.energyEndboss -= 10;
-        if(this.energyEndboss < 0){
-            this.energyEndboss = 0;
+
+
+    /**
+     * drains energy from the target
+     * 
+     */
+    hitFinalBoss() {
+        this.energyFinalBoss -= 10;    
+        if (this.energyFinalBoss < 0) {
+            this.energyFinalBoss = 0;
         }
-    }
-    endbossDead(){
-        if(this.energyEndboss == 0){
-            return true
+        else {
+            this.lastHitFinalBoss = new Date().getTime();
         }
-    }
-    animate() {
-        setInterval(() => {
-            this.finalBossAnnimation();  
-         }, 200);
     }
 
+
+    /**
+     * 
+     * @returns if the last hit was 1 second ago or not
+     */
+    isHurtFinalBoss() {
+        let timepassed = new Date().getTime() - this.lastHitFinalBoss;
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
+    }
+
+
+    /**
+     * 
+     * @returns if the energy is 0 
+     */
+    isDeadFinalBoss() {
+        return this.energyFinalBoss == 0;
+    }
+
+
+    /**
+     * animation of the final boss
+     * 
+     */
     finalBossAnnimation() {
-        if (this.endbossDead) {
+        if (this.isDeadFinalBoss()) {
             this.finalBossAnnimationDead();
         }
-        else if (this.hitEndboss()) {
+        else if (this.isHurtFinalBoss()) {
             this.finalBossAnnimationHurt();
         }        
-        else if (this.firstContact == true) {
-            console.log('alert')
+        else if (this.i < 15) {
             this.finalBossAnnimationAlert();     
         }
-        else if (this.secondContact == true) {
+        else if (this.i < 30) {
             this.finalBossAnnimationAttack();
         }
         else {        
             this.finalBossAnnimationWalk();
         }
-        // this.i++;    
-        // this.finalBossFirstContact();   
+        this.i++;    
+        this.finalBossFirstContact();   
     }
 
-    finalBossAnnimationAlert() {
-        this.playAnnimation(this.Alert_Images); 
-    }
 
-    finalBossAnnimationWalk() {
-        this.playAnnimation(this.Walking_Images);
-    }
-
-    finalBossAnnimationHurt() {
-        this.playAnnimation(this.Hurt_Images);
-    }
-
+    /**
+     * animation at death
+     * 
+     */
     finalBossAnnimationDead() {
-        this.playAnimation(this.Dead_Images);
-        // world.gameOver = true;
-        // world.background_music.pause()
+        this.playAnimation(this.IMAGES_DEAD);
+        world.gameOver = true;
+        world.background_music.pause()
         setTimeout(() => {
-            // this.clearAllIntervals();
-            // this.playSound(world.win_sound);
-            // gameOverWin();
+            this.clearAllIntervals();
+            this.playSound(world.win_sound);
+            gameOverWin();
         }, 1500);
+    }
+
+
+    /**
+     * animation at hurt
+     * 
+     */
+    finalBossAnnimationHurt() {
+        this.playAnimation(this.IMAGES_HURT);
+    }
+
+
+    /**
+     * animation at alert
+     * 
+     */
+    finalBossAnnimationAlert() {
+        this.playAnimation(this.IMAGES_ALERT); 
+    }
+
+
+    /**
+     * animation at attack
+     * 
+     */
+    finalBossAnnimationAttack() {
+        this.playAnimation(this.IMAGES_ATTACK);
+    }
+    
+
+    /**
+     * animation at walking
+     * 
+     */
+    finalBossAnnimationWalk() {
+        this.playAnimation(this.IMAGES_WALK);
+    }
+
+
+    /**
+     * checks if the character had first contact with the final boss
+     * 
+     */
+    finalBossFirstContact() {
+        if (world.character.x > 1425 && !this.hadFirstContact) {
+            this.i = 0;
+            this.hadFirstContact = true;
+        }
+    }
+
+
+    /**
+     * animates the final boss
+     * 
+     */
+    animate() {
+        setInterval(() => {
+            this.finalBossAnnimation();            
+        }, 200);
+        setInterval(() => {
+            if (this.hadFirstContact && this.i > 30 && !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
+                this.x -= this.speed;    
+            }        
+        }, 1000 / 60);
+        setInterval(() => {
+            if (this.isHurtFinalBoss()) {
+                this.playSound(world.finalbossHurt_sound);
+            }
+        }, 100);
     }
 }

@@ -61,7 +61,7 @@ class Endboss extends MovableObject{
     hitEndboss(){
         this.energyEndboss -= 10;
         if(this.energyEndboss < 0){
-            energyEndboss = 0;
+            this.energyEndboss = 0;
         }
     }
     endbossDead(){
@@ -76,10 +76,10 @@ class Endboss extends MovableObject{
     }
 
     finalBossAnnimation() {
-        if (!this.endbossDead) {
+        if (this.endbossDead) {
             this.finalBossAnnimationDead();
         }
-        else if (this.isHurtFinalBoss()) {
+        else if (this.hitEndboss()) {
             this.finalBossAnnimationHurt();
         }        
         else if (this.firstContact == true) {

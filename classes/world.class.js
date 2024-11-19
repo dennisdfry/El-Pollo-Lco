@@ -131,7 +131,6 @@ class World {
         this.level.smallChicken.forEach((enemy) => {
             if (this.character.isColliding(enemy) &&  enemy.chickenisDeath == false) {
                 this.character.hit();
-                console.log(this.character.energy);
                 this.statusBar.setPercentage(this.character.energy);
             }
         });

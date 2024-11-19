@@ -31,7 +31,7 @@ class World {
         this.run();
         this.collectCoins();
         this.collectBottles();
-        this.checkKillLittleChicken();
+        // this.checkKillChicken();
     }
 
     collectCoins() {
@@ -72,8 +72,7 @@ class World {
         }, 25);
     }
 
-    checkKillLittleChicken() {
-
+    checkKillChicken() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 if (!enemy.chickenisDeath) {
@@ -84,10 +83,7 @@ class World {
                         console.log
                         this.level.enemies.splice(index, 1);
                     }, 1000);
-
                 };
-
-
             }
         });
     }
@@ -108,11 +104,21 @@ class World {
 
 
     checkCollision() {
-        this.checkCollisionWithLittleChicken();
-        this.checkKillLittleChicken();
+        this.checkCollisionWithChicken();
+        this.checkKillChicken();
+        this.checkCollisionLittleChicken();
     }
 
-    checkCollisionWithLittleChicken() {
+    checkCollisionLittleChicken(){
+        this.level.smallChicken.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkCollisionWithChicken() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();

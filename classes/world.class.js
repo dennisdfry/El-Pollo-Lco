@@ -17,6 +17,7 @@ class World {
     lastInteraction;
     defaultSleeping = true;
     defaultdeathChicken = [];
+    bottlePercentage = 0;
     bottleCounter = 0;
    
     constructor(canvas, keyboard) {
@@ -50,8 +51,9 @@ class World {
                     this.level.bottles.splice(index, 1);
                     let throwbottle =  new ThrowableObject();
                    this.throwableObjects.push(throwbottle);
-                   this.bottleCounter = this.bottleCounter + 10;
-                   this.bottleBar.setPercentage(this.bottleCounter);
+                   this.bottlePercentage = this.bottlePercentage + 10;
+                   this.bottleBar.setPercentage(this.bottlePercentage);
+                   this.bottleCounter++;
                 }
             });
         }, 200);
@@ -68,13 +70,16 @@ class World {
     }
     
     checkKillLittleChicken() {
-            this.level.enemies.forEach((enemy, index) => {
-                if (this.character.isJumpToKill(enemy)) {
+
+            this.level.enemies.forEach(enemy => {
+                if(this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                    if (!enemy.chickenisDeath) {
+                        this.character.jump();
+                    };
                     enemy.chickenisDeath = true;
-                    // this.character.jump();
-                    console.log(this.level.enemies[index].chickenisDeath )
-                        // this.level.enemies.splice(index, 1);   
-                }});
+                    // this.level.enemies.splice(index, 1); 
+                }
+            });
     }
   
 
@@ -84,6 +89,8 @@ class World {
             console.log(bottle)
             this.throwableObjects.push(bottle);
             this.bottleCounter--;
+            this.bottlePercentage = this.bottlePercentage - 10;
+            this.bottleBar.setPercentage(this.bottlePercentage);
            
 
         }

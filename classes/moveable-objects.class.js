@@ -60,12 +60,12 @@ class MovableObject extends DrawableObject {
             return true
          }
      }
-    isJumpToKill(mo) {
-        const isAbove = this.y + this.height >= mo.y && this.y + this.height <= mo.y + 20;
-        const isFalling = this.speedY < 0;
-        const isHorizontalOverlap = this.x + this.width > mo.x && this.x < mo.x + mo.width;
-        return isAbove && isHorizontalOverlap && isFalling;
-    }
+    // isJumpToKill(mo) {
+    //     const isAbove = this.y + this.height >= mo.y && this.y + this.height <= mo.y + 20;
+    //     const isFalling = this.speedY < 0;
+    //     const isHorizontalOverlap = this.x + this.width > mo.x && this.x < mo.x + mo.width;
+    //     return isAbove && isHorizontalOverlap && isFalling;
+    // }
 
     isColliding(mo) {
         return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;

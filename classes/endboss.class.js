@@ -181,7 +181,7 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossFirstContact() {
-        if (world.character.x > 2800 && !this.hadFirstContact) {
+        if (world.character.x > 2700 && !this.hadFirstContact) {
             this.i = 0;
             this.hadFirstContact = true;
         }

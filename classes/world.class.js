@@ -21,6 +21,7 @@ class World {
     bottleCounter = 0;
     killSound = new Audio('audio/jump_kill.mp3');
     bottleDestroy = new Audio('audio/bottle_destroy.mp3');
+    coinCollectSound = new Audio('audio/coin.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -42,6 +43,7 @@ class World {
                     // this.world.coinBar.percentage + 20;
                     this.counterForCoins = this.counterForCoins + 10;
                     this.coinBar.setPercentage(this.counterForCoins);
+                    this.coinCollectSound.play();
                 }
             })
         }, 200);

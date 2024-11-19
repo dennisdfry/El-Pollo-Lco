@@ -1,4 +1,5 @@
 class Chicken extends MovableObject {
+
     y = 360;
     height = 60;
     width = 80;
@@ -8,8 +9,12 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
+    IMAGES_Death = [
+        'img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
+    ];
     death_Image = 'img/3_enemies_chicken/chicken_normal/2_dead';
-   defaultdeathChicken = false;
+    defaultdeathChicken = false;
+    chickenisDeath = false;
     constructor() {
 
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -19,31 +24,32 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
+        chickenAnnimationWalk() {
+            this.playAnimation(this.Walking_Images); 
+        }
 
-    animate() {
-       
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000/60);
-       
-        setInterval(() => {
-            let i = this.currentImage % this.Walking_Images.length;
-            let path = this.Walking_Images[i];
-            this.img = this.imageCache[path];
-            this.currentImage++
-        }, 100);
-  
-}
-}
-
-class deathChicken extends MovableObject{
-    img = 'img/3_enemies_chicken/chicken_normal/2_dead';
-    height = 60;
-    width = 80;
-    y = 360;
-    x;
-    constructor(x){
-        super().loadImage(this.img);
-        console.log(x)
+        chickenAnnimationDead() {
+            this.loadImage(this.IMAGES_Death);
+            setTimeout(() => {
+                this.IMAGES_Death= [];
+            }, 500);
+        }
+    
+        animate() {
+            setInterval( () => {
+                this.moveLeft();
+            }, 1000 / 60);
+    
+            setInterval(() => {
+                
+                if (!this.chickenisDeath) {
+                    this.chickenAnnimationWalk();
+                }
+                else {
+                    this.chickenAnnimationDead();
+                }      
+            }, 200);
+        }
     }
-}
+
+

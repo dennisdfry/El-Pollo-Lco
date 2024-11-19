@@ -12,6 +12,7 @@ class World {
     coinBar = new CoinBar();
     bottleBar = new BottleBar();
     coinClass = new Coins();
+    counterForCoins = 0;
     throwableObjects = [];
     lastInteraction;
     defaultSleeping = true;
@@ -36,6 +37,8 @@ class World {
             if(this.character.isColliding(coin)){
                 this.level.coins.splice(index, 1);
                 // this.world.coinBar.percentage + 20;
+                this.counterForCoins = this.counterForCoins + 10;
+                this.coinBar.setPercentage(this.counterForCoins);
             }})
        }, 200 ); 
     }
@@ -47,8 +50,8 @@ class World {
                     this.level.bottles.splice(index, 1);
                     let throwbottle =  new ThrowableObject();
                    this.throwableObjects.push(throwbottle);
-                   this.bottleCounter++;
-                   console.log(this.throwableObjects)
+                   this.bottleCounter = this.bottleCounter + 10;
+                   this.bottleBar.setPercentage(this.bottleCounter);
                 }
             });
         }, 200);
@@ -67,11 +70,13 @@ class World {
     checkKillLittleChicken() {
             this.level.enemies.forEach((enemy, index) => {
                 if (this.character.isJumpToKill(enemy)) {
-                  let x =  this.level.enemies[index].x;
-                  new deathChicken(x);
-                         this.level.enemies.splice(index, 1); 
+                    enemy.chickenisDeath = true;
+                    // this.character.jump();
+                    console.log(this.level.enemies[index].chickenisDeath )
+                        // this.level.enemies.splice(index, 1);   
                 }});
     }
+  
 
     checkThrowObjects(){
         if(this.keyboard.D && this.bottleCounter > 0){  
@@ -80,14 +85,13 @@ class World {
             this.throwableObjects.push(bottle);
             this.bottleCounter--;
            
-      
+
         }
         }
     
 
     checkCollision(){
         this.checkCollisionWithLittleChicken();
-      
         this.checkKillLittleChicken();
     }
 

@@ -10,6 +10,7 @@ function init(){
     startButton.classList.add('d-none');
     canvas.classList.remove('d-none');
     world = new World(canvas, keyboard);
+    
     // mexican_Melodie.play();
 }
 

@@ -3,8 +3,11 @@ class Endboss extends MovableObject {
 
     width = 200;
     height = 400;
-    y = 0;
+    x = 3200;
+    y = 60;
     i = 0;
+    energyFinalBoss = 100;
+   
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -57,7 +60,6 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.speed = 2;
-        this.x = 2000;
         this.animate();
     }
 
@@ -67,7 +69,7 @@ class Endboss extends MovableObject {
      * 
      */
     hitFinalBoss() {
-        this.energyFinalBoss -= 10;    
+        this.energyFinalBoss -= 15;    
         if (this.energyFinalBoss < 0) {
             this.energyFinalBoss = 0;
         }
@@ -117,7 +119,7 @@ class Endboss extends MovableObject {
         else {        
             this.finalBossAnnimationWalk();
         }
-        this.i++;    
+        this.i++;   
         this.finalBossFirstContact();   
     }
 
@@ -179,7 +181,7 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossFirstContact() {
-        if (world.character.x > 1425 && !this.hadFirstContact) {
+        if (world.character.x > 2800 && !this.hadFirstContact) {
             this.i = 0;
             this.hadFirstContact = true;
         }
@@ -201,7 +203,7 @@ class Endboss extends MovableObject {
         }, 1000 / 60);
         setInterval(() => {
             if (this.isHurtFinalBoss()) {
-                this.playSound(world.finalbossHurt_sound);
+                // this.playSound(world.finalbossHurt_sound);
             }
         }, 100);
     }

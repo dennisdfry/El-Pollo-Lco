@@ -19,6 +19,7 @@ class World {
     defaultdeathChicken = [];
     bottlePercentage = 0;
     bottleCounter = 0;
+    killSound =  new Audio('audio/jump_kill.mp3');
    
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -75,6 +76,7 @@ class World {
                 if(this.character.isColliding(enemy) && this.character.isAboveGround()) {
                     if (!enemy.chickenisDeath) {
                         this.character.jump();
+                        this.killSound.play();
                     };
                     enemy.chickenisDeath = true;
                     // this.level.enemies.splice(index, 1); 

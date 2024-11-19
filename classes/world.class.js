@@ -72,14 +72,20 @@ class World {
     
     checkKillLittleChicken() {
 
-            this.level.enemies.forEach(enemy => {
+            this.level.enemies.forEach((enemy, index)=> {
                 if(this.character.isColliding(enemy) && this.character.isAboveGround()) {
                     if (!enemy.chickenisDeath) {
                         this.character.jump();
                         this.killSound.play();
+                        enemy.chickenisDeath = true;
+                        setTimeout(() => {
+                            console.log
+                            this.level.enemies.splice(index, 1); 
+                        }, 1000);
+                      
                     };
-                    enemy.chickenisDeath = true;
-                    // this.level.enemies.splice(index, 1); 
+                    
+                    
                 }
             });
     }

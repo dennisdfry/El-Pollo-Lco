@@ -9,7 +9,7 @@ class SmallChicken extends MovableObject{
         'img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
     ];
 
-    IMAGES_DEAD = [
+    IMAGES_Death = [
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
     
@@ -51,13 +51,13 @@ class SmallChicken extends MovableObject{
      * 
      */
     chickenAnnimationDead() {
-        this.loadImage(this.IMAGES_DEAD);
+        this.loadImage(this.IMAGES_Death);
         if (this.musicCounter === 0) {
             this.playSound(world.chickenDead_music);
         }
         this.musicCounter++;
         setTimeout(() => {
-            this.IMAGES_DEAD = [];
+            this.IMAGES_Death = [];
         }, 500);
     }
 
@@ -71,8 +71,16 @@ class SmallChicken extends MovableObject{
             this.moveLeft();
         }, 1000 / 60);
 
-        setInterval(() =>{
-            this.chickenAnnimation();
+        setInterval(() => {
+                
+            if (!this.chickenisDeath) {
+                this.chickenAnnimationWalk();
+            }
+            else {
+                this.chickenAnnimationDead();
+                
+
+            }      
         }, 200);
     }
 }

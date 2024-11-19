@@ -69,7 +69,7 @@ class World {
         }, 200);
         setInterval(() => {
             this.checkCollision();
-        }, 25);
+        }, 50);
     }
 
     checkKillChicken() {
@@ -104,15 +104,32 @@ class World {
 
 
     checkCollision() {
-        this.checkCollisionWithChicken();
         this.checkKillChicken();
+        this.checkCollisionWithChicken();
+        this.checkKillLittleChicken();
         this.checkCollisionLittleChicken();
+    }
+
+    checkKillLittleChicken() {
+        this.level.smallChicken.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                if (!enemy.chickenisDeath) {
+                    this.character.jump();
+                    this.killSound.play();
+                    enemy.chickenisDeath = true;
+                    setTimeout(() => {
+                        this.level.smallChicken.splice(index, 1);
+                    }, 1000);
+                };
+            }
+        });
     }
 
     checkCollisionLittleChicken(){
         this.level.smallChicken.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) &&  enemy.chickenisDeath == false) {
                 this.character.hit();
+                console.log(this.character.energy);
                 this.statusBar.setPercentage(this.character.energy);
             }
         });
@@ -120,7 +137,7 @@ class World {
 
     checkCollisionWithChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy)&&  enemy.chickenisDeath == false) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }

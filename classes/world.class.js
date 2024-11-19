@@ -1,6 +1,7 @@
 class World {
     character = new Character();
     chicken = new Chicken();
+    smallChicken = new SmallChicken();
     level = level1;
     canvas;
     ctx;
@@ -34,7 +35,7 @@ class World {
         this.level.coins.forEach((coin, index)=>{
             if(this.character.isColliding(coin)){
                 this.level.coins.splice(index, 1);
-                
+                // this.world.coinBar.percentage + 20;
             }})
        }, 200 ); 
     }
@@ -127,6 +128,7 @@ class World {
         this.addToMap(this.endbossStatusbar);
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.smallChicken);
         this.addObjectsToMap(this.throwableObjects);
         this.addToMap(this.level.endboss);
         this.addObjectsToMap(this.level.bottles);

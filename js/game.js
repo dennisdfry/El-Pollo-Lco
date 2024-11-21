@@ -3,17 +3,14 @@ let world;
 let keyboard = new Keyboard();
 let mexican_Melodie = new Audio('audio/210. Mexican.mp3')
 
-
-function init(){
+async function init(){
     canvas = document.getElementById('canvas');
     startButton = document.getElementById('startButton');
     startButton.classList.add('d-none');
     canvas.classList.remove('d-none');
     world = new World(canvas, keyboard);
-    
     // mexican_Melodie.play();
 }
-
 
 window.addEventListener("keydown", (e) => {
     if(e.keyCode == 68){

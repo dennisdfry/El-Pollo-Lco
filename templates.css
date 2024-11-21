@@ -7,7 +7,9 @@
 .jtf-center{
     justify-content: center;
 }
-
+.space-btw{
+    justify-content: space-between;
+}
 .d-none{
     display: none;
 }

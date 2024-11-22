@@ -15,6 +15,12 @@ async function init(){
     world = new World(canvas, keyboard);
     // mexican_Melodie.play();
 }
+
+function initMobile() {
+    mobileKeyPressEvents();
+    mobileKeyReleaseEvents();
+}
+
 function openInfoSection(){
     let position = document.getElementById('openSection');
     position.classList.remove('d-none');
@@ -25,6 +31,9 @@ function closeInfoSection() {
     position.classList.add('d-none');
 }
 
+document.addEventListener('touchstart', e => {
+    console.log(e);
+})
 window.addEventListener("keydown", (e) => {
     if(e.keyCode == 68){
         keyboard.D = true;
@@ -79,3 +88,50 @@ window.addEventListener("keyup", (e) => {
         keyboard.lastInteraction = false;
     };
 });
+
+
+function mobileKeyPressEvents() {
+    const leftButton = document.getElementById('left_button');
+    leftButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+    const rightButton = document.getElementById('right_button');
+    rightButton.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+    const jump = document.getElementById('jump_button');
+    jump.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+    const throwBottle = document.getElementById('throw_button');
+    throwBottle.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.D = true;
+    });
+}
+
+
+/**
+ * This function sets the key to false, after releasing them (mobile)
+ */
+function mobileKeyReleaseEvents() {
+    const leftButton = document.getElementById('leftButton');
+    leftButton.addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+    });
+    const rightButton = document.getElementById('rightButton');
+    rightButton.addEventListener('touchend', () => {
+        keyboard.RIGHT = false;
+    });
+    const jump = document.getElementById('jumpButton');
+    jump.addEventListener('touchend', (e) => {
+        keyboard.SPACE = false;
+    });
+    const throwBottle = document.getElementById('throwButton');
+    throwBottle.addEventListener('touchend', (e) => {
+        keyboard.D = false;
+    });
+}

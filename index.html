@@ -39,16 +39,16 @@
             <button onclick="init()" id="startButton" class="btn pointer">Game Start</button>
             <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
             <div id="infoButton" class="d-flex jtf-center">
-                <img class="pointer game-button info-button" onclick="openInfoSection()" src="img/icons8-info-64.png" alt="">
+                <img class="pointer info-button" onclick="openInfoSection()" src="img/icons8-info-64.png" alt="">
             </div>
             <div id="steeringSection" class="d-none d-flex steering-section space-btw">
                 <div class="d-flex space-btw">
-                    <img class="pointer game-button" src="img/icons8-pfeil-64.png" alt="">
-                    <img class="pointer game-button" src="img/icons8-pfeil-64 (2).png" alt="">
-                    <img class="pointer game-button" src="img/icons8-pfeil-64 (1).png" alt="">
+                    <img id="leftButton" class="pointer game-button" src="img/icons8-pfeil-64.png" alt="">
+                    <img id="jumpButton" class="pointer game-button" src="img/icons8-pfeil-64 (2).png" alt="">
+                    <img id="rightButton" class="pointer game-button" src="img/icons8-pfeil-64 (1).png" alt="">
                 </div>
                 <div class="d-flex align-items">
-                    <img class="pointer game-button" class="img-64" src="img/icons8-bottle-of-water-48.png" alt="">
+                    <img id="throwButton" class="pointer game-button" class="img-64" src="img/icons8-bottle-of-water-48.png" alt="">
                 </div>
             </div>
         </div>

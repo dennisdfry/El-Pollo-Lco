@@ -40,6 +40,12 @@ h1{
     border-radius: 50%;
 }
 .info-button{
+    border-radius: 100%;
+    margin-top: 16px;
+}
+.info-button:hover{
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease; 
 }
 .game-button{
     border-radius: 50%;

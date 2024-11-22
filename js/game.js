@@ -6,10 +6,23 @@ let mexican_Melodie = new Audio('audio/210. Mexican.mp3')
 async function init(){
     canvas = document.getElementById('canvas');
     startButton = document.getElementById('startButton');
+    infoButton = document.getElementById('infoButton');
+    steeringHide = document.getElementById('steeringSection');
+    steeringHide.classList.remove('d-none')
+    infoButton.classList.add('d-none');
     startButton.classList.add('d-none');
     canvas.classList.remove('d-none');
     world = new World(canvas, keyboard);
     // mexican_Melodie.play();
+}
+function openInfoSection(){
+    let position = document.getElementById('openSection');
+    position.classList.remove('d-none');
+}
+
+function closeInfoSection() {
+    let position = document.getElementById('openSection');
+    position.classList.add('d-none');
 }
 
 window.addEventListener("keydown", (e) => {

@@ -38,50 +38,48 @@
             </div>
             <button onclick="init()" id="startButton" class="btn pointer">Game Start</button>
             <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
-            <div class="d-flex jtf-center">
-                <img src="img/icons8-info-64.png" alt="">
+            <div id="infoButton" class="d-flex jtf-center">
+                <img class="pointer game-button info-button" onclick="openInfoSection()" src="img/icons8-info-64.png" alt="">
             </div>
-            <div class="d-flex steering-section space-btw">
+            <div id="steeringSection" class="d-none d-flex steering-section space-btw">
                 <div class="d-flex space-btw">
-                    <img src="img/icons8-pfeil-64.png" alt="">
-                    <img src="img/icons8-pfeil-64 (2).png" alt="">
-                    <img src="img/icons8-pfeil-64 (1).png" alt="">
+                    <img class="pointer game-button" src="img/icons8-pfeil-64.png" alt="">
+                    <img class="pointer game-button" src="img/icons8-pfeil-64 (2).png" alt="">
+                    <img class="pointer game-button" src="img/icons8-pfeil-64 (1).png" alt="">
                 </div>
-                <div>
-                    <img class="img-64" src="img/icons8-bottle-of-water-48.png" alt="">
+                <div class="d-flex align-items">
+                    <img class="pointer game-button" class="img-64" src="img/icons8-bottle-of-water-48.png" alt="">
                 </div>
             </div>
         </div>
     </div>
+    <div id="openSection" class="d-none align-items flex-column d-flex jtf-center info-section">
+        <img class="close-button pointer" onclick="closeInfoSection()" src="img/icons8-back-64.png" alt="">
 
-    <section class="d-none">
-        <div>Impressum & Nutzungsbedingungen
-            Impressum:
-            Verantwortlich für diese Website:
-            Johannes Singl
-            Köhlerstraße 23
-            86424 Dinkelscherben
-            Telefon: +49 (0)176 44452102
-            E-Mail: johannes.singl@gmx.de
-
-            Nutzungsbedingungen:
-            Diese Website dient ausschließlich der Unterhaltung. Die Nutzung erfolgt auf eigenes Risiko. Wir übernehmen
-            keine Haftung für Schäden, die durch die Nutzung der Website entstehen könnten. Alle Rechte vorbehalten.
-        </div>
-    </section>
-
-    <section class="d-none">
-        <div>Willkommen zu "El Pollo Loco"! Du spielst Pepe, einen mutigen Mexikaner, in diesem aufregenden
-            Jump-and-Run-Abenteuer, das in der heißen mexikanischen Wüste spielt. Dein Ziel ist es, gegen verrückte
-            Hühner zu kämpfen und Salsa-Flaschen zu sammeln, um schließlich den Endboss, das gigantische Huhn, zu
-            besiegen. Viel Erfolg!</div>
-    </section>
-
-    <section>
-        <a target="_blank" href="https://icons8.com/icon/80625/arrow">Pfeil</a> Icon von <a target="_blank"
-            href="https://icons8.com">Icons8</a>
-    </section>
-
+        <section class="info-card">
+            <h1>Gameplay</h1>
+            <div>Willkommen zu "El Pollo Loco"! Du spielst Pepe, einen mutigen Mexikaner, in diesem aufregenden
+                Jump-and-Run-Abenteuer, das in der heißen mexikanischen Wüste spielt. Dein Ziel ist es, gegen verrückte
+                Hühner zu kämpfen und Salsa-Flaschen zu sammeln, um schließlich den Endboss, das gigantische Huhn, zu
+                besiegen. Viel Erfolg!</div>
+        </section>
+        <section class="info-card">
+            <h1>Impressum & Nutzungsbedingungen</h1>
+            <div>
+                <h3>Verantwortlich für diese Website:</h3>
+                <h4>Dennis Freyer</h4>
+                <h5>Nutzungsbedingungen:</h5>
+                Diese Website dient ausschließlich der Unterhaltung. Die Nutzung erfolgt auf eigenes Risiko. Wir
+                übernehmen
+                keine Haftung für Schäden, die durch die Nutzung der Website entstehen könnten. Alle Rechte vorbehalten.
+            </div>
+        </section>
+        <section class="info-card">
+            <h1>Links</h1>
+            <a target="_blank" href="https://icons8.com/icon/80625/arrow">Pfeil</a> Icon von <a target="_blank"
+                href="https://icons8.com">Icons8</a>
+        </section>
+    </div>
 </body>
 
 </html>

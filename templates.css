@@ -16,6 +16,9 @@
 .text-ctr{
     text-align: center;
 }
+.align-items{
+    align-items: center;
+}
 .margin-0{
     margin: 0px;
 }
@@ -36,3 +39,5 @@
     width: 64px;
     height:64px;
 }
+
+

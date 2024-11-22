@@ -15,6 +15,9 @@ async function init(){
     world = new World(canvas, keyboard);
     // mexican_Melodie.play();
 }
+document.addEventListener('DOMContentLoaded', () => {
+    initMobile();
+});
 
 function initMobile() {
     mobileKeyPressEvents();
@@ -31,9 +34,6 @@ function closeInfoSection() {
     position.classList.add('d-none');
 }
 
-document.addEventListener('touchstart', e => {
-    console.log(e);
-})
 window.addEventListener("keydown", (e) => {
     if(e.keyCode == 68){
         keyboard.D = true;
@@ -91,22 +91,22 @@ window.addEventListener("keyup", (e) => {
 
 
 function mobileKeyPressEvents() {
-    const leftButton = document.getElementById('left_button');
+    const leftButton = document.getElementById('leftButton');
     leftButton.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.LEFT = true;
     });
-    const rightButton = document.getElementById('right_button');
+    const rightButton = document.getElementById('rightButton');
     rightButton.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.RIGHT = true;
     });
-    const jump = document.getElementById('jump_button');
+    const jump = document.getElementById('jumpButton');
     jump.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.SPACE = true;
     });
-    const throwBottle = document.getElementById('throw_button');
+    const throwBottle = document.getElementById('throwButton');
     throwBottle.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.D = true;
@@ -119,11 +119,11 @@ function mobileKeyPressEvents() {
  */
 function mobileKeyReleaseEvents() {
     const leftButton = document.getElementById('leftButton');
-    leftButton.addEventListener('touchend', () => {
+    leftButton.addEventListener('touchend', (e) => {
         keyboard.LEFT = false;
     });
     const rightButton = document.getElementById('rightButton');
-    rightButton.addEventListener('touchend', () => {
+    rightButton.addEventListener('touchend', (e) => {
         keyboard.RIGHT = false;
     });
     const jump = document.getElementById('jumpButton');

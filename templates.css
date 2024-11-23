@@ -4,8 +4,14 @@
 .flex-column{
     flex-direction: column;
 }
+.flex-end{
+    justify-content: flex-end;
+}
 .jtf-center{
     justify-content: center;
+}
+.align-bottom{
+    align-items:flex-end;
 }
 .space-btw{
     justify-content: space-between;
@@ -39,5 +45,18 @@
     width: 64px;
     height:64px;
 }
-
-
+.margRight-8{
+    margin-right: 8px;
+}
+.margLeft-8{
+    margin-left: 8px;
+}
+.throwButton{
+    padding:7px;
+}
+.margTop-48{
+    margin-top: 48px;
+}
+.margBottm-48{
+    margin-bottom: 48px;
+}

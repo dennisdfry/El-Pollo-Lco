@@ -6,6 +6,7 @@ canvas{
 }
 h1{
     margin-block-start: 0;
+    font-size: 32px;
 }
 .background-main{
     background-image: url('img/5_background/complete_background.png');
@@ -27,10 +28,17 @@ h1{
 
 .info-card{
     width:400px;
+    height:200px;
     background-color: beige;
     border-radius: 8px;
     margin: 8px;
     padding: 8px;
+    overflow-y: auto; /* Aktiviert vertikalen Scrollbalken */
+    overflow-x: hidden; /* Verhindert horizontalen Scrollbalken */
+}
+
+.info-card::-webkit-scrollbar {
+    display: none; /* Versteckt den Scrollbalken */
 }
 .close-button{
     position: absolute;
@@ -60,3 +68,5 @@ h1{
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease;  
 }
+
+

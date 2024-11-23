@@ -84,6 +84,12 @@ class MovableObject extends DrawableObject {
             endboss.y + endboss.height > bottle.y
         );
     }
+    
+    sleepAnimation(lastInteractionStart){
+        let timePassed = new Date().getTime() - lastInteractionStart;
+        timePassed = timePassed / 1000;
+        return timePassed > 5; 
+    }
 
     playAnimation(images) {
         let i = this.currentImage % images.length;

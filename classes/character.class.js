@@ -121,34 +121,34 @@ class Character extends MovableObject {
         setInterval(() => {
             if
                 (this.isDead()) {
-                this.playAnimation(this.DEAD_Images)
+                this.playAnimation(this.DEAD_Images);
+                this.resetSleepTimer();
             } else if
                 (this.isAboveGround()) {
-                this.playAnimation(this.JUMPING_Images)
+                this.playAnimation(this.JUMPING_Images);
+                this.resetSleepTimer();
             } else if (this.isHurt()) {
-                this.playAnimation(this.isHurt_Images)
+                this.playAnimation(this.isHurt_Images);
+                this.resetSleepTimer();
             } else if
                 (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.Walking_Images);
+                this.resetSleepTimer();
             } else if
             (this.sleepAnimation(this.lastInteractionStart)){
-                this.playAnimation(this.sleeping_IMAGES)
-            } 
-            else
-            {
-                this.playAnimation(this.Stand_Image);
+                this.playAnimation(this.sleeping_IMAGES) 
+            }  else {
+                this.playAnimation(this.Stand_Image) 
                 if (!this.lastInteractionfalse) {
                     this.lastInteractionStart = new Date().getTime();
                     this.lastInteractionfalse = true;
-                }else{
-                    return
                 }
-                
-
             }
-
-
         }, 100);
-
     }
+
+    resetSleepTimer() {
+        this.lastInteractionStart = new Date().getTime();
+        this.lastInteractionfalse = false; 
+    };
 }

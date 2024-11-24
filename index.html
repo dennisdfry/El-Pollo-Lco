@@ -41,10 +41,12 @@
             <div class="text-ctr">
                 <h1>El Pollo Loco</h1>
             </div>
-            <button onclick="init()" id="startButton" class="btn pointer">Game Start</button>
-            <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
-            <div id="infoButton" class="d-flex jtf-center">
-                <img class="pointer info-button" onclick="openInfoSection()" src="img/icons8-info-64.png" alt="">
+            <div class="teaser-class d-flex jtf-center align-items flex-column">
+                <button onclick="init()" id="startButton" class="btn pointer">Game Start</button>
+                <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
+                <div id="infoButton" class="d-flex jtf-center">
+                    <img class="pointer info-button" onclick="openInfoSection()" src="img/icons8-info-64.png" alt="">
+                </div>
             </div>
             <div id="steeringSection" class="d-none d-flex steering-section space-btw">
                 <div class="d-flex space-btw margLeft-8">

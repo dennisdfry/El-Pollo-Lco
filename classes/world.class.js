@@ -40,13 +40,16 @@ class World {
             this.level.coins.forEach((coin, index) => {
                 if (this.character.isColliding(coin)) {
                     this.level.coins.splice(index, 1);
-                    // this.world.coinBar.percentage + 20;
                     this.counterForCoins = this.counterForCoins + 10;
                     this.coinBar.setPercentage(this.counterForCoins);
-                    this.coinCollectSound.play();
+                    // this.coinCollectSound.play();      
+                    if (this.coinCollectSound.paused) {
+                        this.coinCollectSound.currentTime = 0; // Setze den Sound zurück
+                        this.coinCollectSound.play(); // Spiele den Sound ab
+                    }
                 }
             })
-        }, 200);
+        }, 50);
     }
 
     collectBottles() {

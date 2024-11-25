@@ -15,6 +15,7 @@ class Chicken extends MovableObject {
     death_Image = 'img/3_enemies_chicken/chicken_normal/2_dead';
     defaultdeathChicken = false;
     chickenisDeath = false;
+    startGame;
     
     constructor() {
 
@@ -23,6 +24,7 @@ class Chicken extends MovableObject {
         this.speed = 0.15 + Math.random() * 0.25;
         this.loadImages(this.Walking_Images);
         this.animate();
+        
     }
 
         chickenAnnimationWalk() {
@@ -40,16 +42,12 @@ class Chicken extends MovableObject {
             setInterval( () => {
                 this.moveLeft();
             }, 1000 / 60);
-    
             setInterval(() => {
-                
                 if (!this.chickenisDeath) {
                     this.chickenAnnimationWalk();
                 }
                 else {
                     this.chickenAnnimationDead();
-                    
-
                 }      
             }, 200);
         }

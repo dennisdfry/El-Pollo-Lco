@@ -82,6 +82,7 @@ class Character extends MovableObject {
         this.loadImages(this.isHurt_Images);
         this.loadImages(this.sleeping_IMAGES);
         this.loadImages(this.Stand_Image);
+        // this.loadImage('img/9_intro_outro_screens/game_over/game over.png');
         this.applyGravity();
         this.animate();
     }
@@ -96,7 +97,6 @@ class Character extends MovableObject {
                     this.world.level.endboss.hadFirstContact = true;
                     this.world.level.endboss.firstTimeContact = new Date().getTime();
                 }
-               
                 this.walking_sound.play();
                 this.otherDirection = false;
             };
@@ -117,8 +117,7 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if
-                (this.isDead()) {
+            if(this.isDead()) {
                 this.playAnimation(this.DEAD_Images);
                 this.resetSleepTimer();
             } else if

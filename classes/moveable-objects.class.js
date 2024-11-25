@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     gravityInterval;
     movementInterval = 0;
+    startGame;
 
     applyGravity() {
         setInterval(() => {
@@ -75,7 +76,7 @@ class MovableObject extends DrawableObject {
                 this.y < mo.y + mo.height;
         }
     }
-
+  
     isCollidingEndboss(bottle, endboss){
         return (
             endboss.x < bottle.x + bottle.width &&
@@ -99,6 +100,7 @@ class MovableObject extends DrawableObject {
     }
 
     moveLeft() {
+        
         this.x -= this.speed;
     }
 

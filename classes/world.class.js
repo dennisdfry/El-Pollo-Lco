@@ -34,7 +34,7 @@ class World {
         this.setWorld();
         this.run();
         this.collectCoins();
-        this.collectBottles();
+        this.collectBottles();   
     }
 
     collectCoins() {
@@ -191,6 +191,7 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+    
     }
     setWorld() {
         this.character.world = this;

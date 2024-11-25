@@ -18,9 +18,9 @@ function init(){
     
     // mexican_Melodie.play();
 }
-document.addEventListener('DOMContentLoaded', () => {
-    initMobile();
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     initMobile();
+// });
 
 function initMobile() {
     mobileKeyPressEvents();

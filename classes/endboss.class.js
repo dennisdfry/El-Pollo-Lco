@@ -197,12 +197,13 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if (this.hadFirstContact &&  !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
                 this.finalBossFirstContact();
-               
-                
                   }
                   if(this.finalBossFirstContact()){
+                    if(this.energyFinalBoss == 0){
+                        this.speed = 0
+                    }else{
                     this.x -= this.speed;    
-                  }
+                  }}
         }, 1000 / 60);
         setInterval(() => {
             if (this.isHurtFinalBoss()) {

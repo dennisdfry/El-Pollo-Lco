@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 let mexican_Melodie = new Audio('audio/210. Mexican.mp3');
 let startGame = false;
 
-async function init(){
+function init(){
     canvas = document.getElementById('canvas');
     startButton = document.getElementById('startButton');
     infoButton = document.getElementById('infoButton');

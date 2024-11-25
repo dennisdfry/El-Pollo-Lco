@@ -2,10 +2,12 @@ class World {
     character = new Character();
     chicken = new Chicken();
     smallChicken = new SmallChicken();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
     keyboard;
+    startGame;
     camera_x = 0;
     endbossStatusbar = new EndbossStatusbar();
     statusBar = new StatusBar();
@@ -23,16 +25,16 @@ class World {
     bottleDestroy = new Audio('audio/bottle_destroy.mp3');
     coinCollectSound = new Audio('audio/coin.mp3');
 
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, startGame) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.startGame = startGame;
         this.draw();
         this.setWorld();
         this.run();
         this.collectCoins();
         this.collectBottles();
-        // this.checkKillChicken();
     }
 
     collectCoins() {

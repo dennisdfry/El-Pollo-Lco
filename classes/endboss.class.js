@@ -7,7 +7,7 @@ class Endboss extends MovableObject {
     y = 60;
     i = 0;
     energyFinalBoss = 100;
-   
+    firstTimeContact;
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -63,7 +63,6 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-
     /**
      * drains energy from the target
      * 
@@ -110,17 +109,16 @@ class Endboss extends MovableObject {
         else if (this.isHurtFinalBoss()) {
             this.finalBossAnnimationHurt();
         }        
-        else if (this.i < 15) {
-            this.finalBossAnnimationAlert();     
+        else if (this.hadFirstContact) {
+            this.finalBossAnnimationAttack();     
         }
-        else if (this.i < 30) {
-            this.finalBossAnnimationAttack();
+        else if (this.finalBossFirstContact()) {
+           this.finalBossAnnimationWalk();
         }
         else {        
-            this.finalBossAnnimationWalk();
+            this.finalBossAnnimationAlert();     
         }
-        this.i++;   
-        this.finalBossFirstContact();   
+          
     }
 
 
@@ -181,10 +179,9 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossFirstContact() {
-        if (world.character.x > 2700 && !this.hadFirstContact) {
-            this.i = 0;
-            this.hadFirstContact = true;
-        }
+       let timepassed = new Date().getTime() - this.firstTimeContact;
+       timepassed = timepassed / 1000;
+        return timepassed > 2;
     }
 
 
@@ -193,13 +190,19 @@ class Endboss extends MovableObject {
      * 
      */
     animate() {
+      
         setInterval(() => {
             this.finalBossAnnimation();            
         }, 200);
         setInterval(() => {
-            if (this.hadFirstContact && this.i > 30 && !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
-                this.x -= this.speed;    
-            }        
+            if (this.hadFirstContact &&  !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
+                this.finalBossFirstContact();
+               
+                
+                  }
+                  if(this.finalBossFirstContact()){
+                    this.x -= this.speed;    
+                  }
         }, 1000 / 60);
         setInterval(() => {
             if (this.isHurtFinalBoss()) {

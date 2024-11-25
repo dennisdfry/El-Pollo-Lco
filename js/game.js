@@ -1,7 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let mexican_Melodie = new Audio('audio/210. Mexican.mp3')
+let mexican_Melodie = new Audio('audio/210. Mexican.mp3');
+let startGame = false;
 
 async function init(){
     canvas = document.getElementById('canvas');
@@ -12,7 +13,9 @@ async function init(){
     infoButton.classList.add('d-none');
     startButton.classList.add('d-none');
     canvas.classList.remove('d-none');
-    world = new World(canvas, keyboard);
+    startGame = true;
+    world = new World(canvas, keyboard, startGame);
+    
     // mexican_Melodie.play();
 }
 document.addEventListener('DOMContentLoaded', () => {

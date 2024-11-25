@@ -73,6 +73,7 @@ class Character extends MovableObject {
     lastInteractionStart;
     lastInteractionTime;
     lastInteractionfalse = false;
+    
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
         this.loadImages(this.DEAD_Images);
@@ -92,13 +93,10 @@ class Character extends MovableObject {
                 this.moveRight();
                 if (this.firstContactEndboss(this.x)) {
                     console.log('first point')
-                    this.world.level.endboss.firstContact = true;
+                    this.world.level.endboss.hadFirstContact = true;
+                    this.world.level.endboss.firstTimeContact = new Date().getTime();
                 }
-                if (this.secondContactEndboss(this.x)) {
-                    console.log('second point')
-                    this.world.level.endboss.firstContact = false;
-                    this.world.level.endboss.secondContact = true;
-                }
+               
                 this.walking_sound.play();
                 this.otherDirection = false;
             };

@@ -24,6 +24,7 @@ class World {
     killSound = new Audio('audio/jump_kill.mp3');
     bottleDestroy = new Audio('audio/bottle_destroy.mp3');
     coinCollectSound = new Audio('audio/coin.mp3');
+    bottleCollectSound = new Audio('audio/bottleCollect.mp3');
 
     constructor(canvas, keyboard, startGame) {
         this.ctx = canvas.getContext('2d');
@@ -43,8 +44,7 @@ class World {
                 if (this.character.isColliding(coin)) {
                     this.level.coins.splice(index, 1);
                     this.counterForCoins = this.counterForCoins + 10;
-                    this.coinBar.setPercentage(this.counterForCoins);
-                    // this.coinCollectSound.play();      
+                    this.coinBar.setPercentage(this.counterForCoins);   
                     if (this.coinCollectSound.paused) {
                         this.coinCollectSound.currentTime = 0; // Setze den Sound zurück
                         this.coinCollectSound.play(); // Spiele den Sound ab
@@ -64,6 +64,7 @@ class World {
                     this.bottlePercentage = this.bottlePercentage + 10;
                     this.bottleBar.setPercentage(this.bottlePercentage);
                     this.bottleCounter++;
+                    this.bottleCollectSound.play();
                 }
             });
         }, 50);

@@ -9,6 +9,8 @@ class Endboss extends MovableObject {
     energyFinalBoss = 100;
     firstTimeContact;
 
+    endbossKillSound = new Audio('audio/endbossKill.mp3');
+
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -105,6 +107,7 @@ class Endboss extends MovableObject {
     finalBossAnnimation() {
         if (this.isDeadFinalBoss()) {
             this.finalBossAnnimationDead();
+            this.endbossKillSound.play();
         }
         else if (this.isHurtFinalBoss()) {
             this.finalBossAnnimationHurt();

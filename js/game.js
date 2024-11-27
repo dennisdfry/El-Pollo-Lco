@@ -1,7 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
+let fullscreen = false;
 let isMuted = false;
 
 
@@ -45,6 +45,43 @@ function gameOver(){
         winElement.classList.add("visible");
     }, 100);
 }
+
+// function toggleFullscreen() {
+//     let content = document.getElementById("content");
+//     let fullscreenImage = document.getElementById("fullscreen");
+//     if (fullscreen) {
+//         fullscreenImage.src = 'img/10_extras/vollbild.png';
+//         exitFullscreen();
+//         content.classList.remove('fullscreen-mode');
+//     }
+//     else {
+//         fullscreenImage.src = 'img/10_extras/minimieren.png';
+//         enterFullscreen(document.getElementById("content"));
+//         content.classList.add('fullscreen-mode');
+//     }
+//     fullscreen = !fullscreen;
+// }
+
+// function exitFullscreen() {
+//     if (document.exitFullscreen) {
+//         document.exitFullscreen();
+//     } else if (document.mozCancelFullScreen) {
+//         document.mozCancelFullScreen();
+//     } else if (document.webkitExitFullscreen) {
+//         document.webkitExitFullscreen();
+//     } else if (document.msExitFullscreen) {
+//         document.msExitFullscreen();
+//     }
+// }
+
+// function exitHandler() {
+//     let content = document.getElementById("content");
+//     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+//         document.getElementById("fullscreen").src = 'img/10_extras/vollbild.png';
+//         content.classList.remove('fullscreen-mode');
+//         fullscreen = false;
+//     }
+// }
 
 
 function mute() {

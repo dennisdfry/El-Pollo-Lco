@@ -8,6 +8,7 @@ class World {
     ctx;
     keyboard;
     startGame;
+    gameOver = true;
     camera_x = 0;
     endbossStatusbar = new EndbossStatusbar();
     statusBar = new StatusBar();
@@ -26,6 +27,7 @@ class World {
     coinCollectSound = new Audio('audio/coin.mp3');
     bottleCollectSound = new Audio('audio/bottleCollect.mp3');
     mexican_Melodie = new Audio('audio/210. Mexican.mp3');
+    gameOver_Melodie = new Audio('audio/gameOver.mp3');
 
     constructor(canvas, keyboard, startGame) {
         this.ctx = canvas.getContext('2d');
@@ -87,7 +89,8 @@ class World {
             this.mexican_Melodie.pause();
         }
         else if (!this.gameOver) {
-            this.mexican_Melodie.play();
+            this.gameOver_Melodie.play();
+            this.mexican_Melodie.pause();
         }          
     }
 

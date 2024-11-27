@@ -4,23 +4,49 @@ let keyboard = new Keyboard();
 let mexican_Melodie = new Audio('audio/210. Mexican.mp3');
 let startGame = false;
 
+
 function init(){
+    newGame();
     canvas = document.getElementById('canvas');
-    startButton = document.getElementById('startButton');
-    infoButton = document.getElementById('infoButton');
-    steeringHide = document.getElementById('steeringSection');
-    steeringHide.classList.remove('d-none')
-    infoButton.classList.add('d-none');
-    startButton.classList.add('d-none');
-    canvas.classList.remove('d-none');
+  
     startGame = true;
     world = new World(canvas, keyboard, startGame);
     
     // mexican_Melodie.play();
 }
+ async function newGame() {
+    initLevel();
+    setTimeout(() => {
+        startButton = document.getElementById('startButton');
+    infoButton = document.getElementById('infoButton');
+    steeringHide = document.getElementById('steeringSection');
+    steeringHide.classList.remove('d-none')
+    infoButton.classList.add('d-none');
+    startButton.classList.add('d-none');
+    canvas.classList.remove('d-none');  
+    }, 500);
+   
+}
+
 // document.addEventListener('DOMContentLoaded', () => {
 //     initMobile();
 // });
+
+function gameWin() {
+    const winElement = document.getElementById("gameOverWin");
+    winElement.classList.remove("d-none"); 
+    setTimeout(() => {
+        winElement.classList.add("visible");
+    }, 100);
+}
+
+function gameOver(){
+    const winElement = document.getElementById("gameOver");
+    winElement.classList.remove("d-none"); 
+    setTimeout(() => {
+        winElement.classList.add("visible");
+    }, 100);
+}
 
 function initMobile() {
     mobileKeyPressEvents();

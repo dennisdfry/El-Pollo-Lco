@@ -35,7 +35,7 @@
     <title>El Pollo Loco</title>
 </head>
 
-<body onload="initMobile()" class="margin-0">
+<body class="margin-0">
     <div class="background-main d-flex jtf-center">
         <div class="d-flex jtf-center flex-column">
             <div class="text-ctr">
@@ -43,6 +43,8 @@
             </div>
             <div class="teaser-class d-flex jtf-center align-items flex-column">
                 <button onclick="init()" id="startButton" class="btn pointer">Game Start</button>
+                <img id="gameOver" class="gameOver-section d-none win-img" src="img/9_intro_outro_screens/game_over/game over.png" alt="">
+                <img id="gameOverWin" class="win-section d-none win-img" src="img/9_intro_outro_screens/win/win_1.png" alt="">
                 <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
                 <div id="infoButton" class="d-flex jtf-center">
                     <img class="pointer info-button" onclick="openInfoSection()" src="img/icons8-info-64.png" alt="">

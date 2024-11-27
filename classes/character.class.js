@@ -120,6 +120,7 @@ class Character extends MovableObject {
             if(this.isDead()) {
                 this.playAnimation(this.DEAD_Images);
                 this.resetSleepTimer();
+                gameOver();
             } else if
                 (this.isAboveGround()) {
                 this.playAnimation(this.JUMPING_Images);

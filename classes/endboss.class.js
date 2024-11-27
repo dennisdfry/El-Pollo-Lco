@@ -107,7 +107,7 @@ class Endboss extends MovableObject {
     finalBossAnnimation() {
         if (this.isDeadFinalBoss()) {
             this.finalBossAnnimationDead();
-            this.endbossKillSound.play();
+            gameWin();
         }
         else if (this.isHurtFinalBoss()) {
             this.finalBossAnnimationHurt();
@@ -132,12 +132,10 @@ class Endboss extends MovableObject {
     finalBossAnnimationDead() {
         this.playAnimation(this.IMAGES_DEAD);
         world.gameOver = true;
-        world.background_music.pause()
         setTimeout(() => {
-            this.clearAllIntervals();
-            this.playSound(world.win_sound);
-            gameOverWin();
-        }, 1500);
+       
+            // gameOverWin();
+        }, 100);
     }
 
 

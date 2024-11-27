@@ -94,5 +94,20 @@ h1{
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease;  
 }
+.win-section{
+    position: absolute;
+}
 
+.win-img {
+    display: block;
+    opacity: 0;
+    transition: opacity 2s ease-in-out; 
+}
 
+.win-img.visible {
+    opacity: 1;
+}
+
+.gameOver-section{
+    position: absolute;
+}

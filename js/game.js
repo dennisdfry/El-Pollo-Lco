@@ -7,30 +7,28 @@ let startGame = false;
 
 function init(){
     newGame();
-    canvas = document.getElementById('canvas');
-  
-    startGame = true;
-    world = new World(canvas, keyboard, startGame);
-    
     // mexican_Melodie.play();
 }
  async function newGame() {
+    canvas = document.getElementById('canvas');
     initLevel();
+    world = new World(canvas, keyboard, startGame);
     setTimeout(() => {
-        startButton = document.getElementById('startButton');
+        showGame();
+    }, 500);
+   
+}
+
+function showGame(){
+    startButton = document.getElementById('startButton');
     infoButton = document.getElementById('infoButton');
     steeringHide = document.getElementById('steeringSection');
     steeringHide.classList.remove('d-none')
     infoButton.classList.add('d-none');
     startButton.classList.add('d-none');
     canvas.classList.remove('d-none');  
-    }, 500);
-   
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     initMobile();
-// });
 
 function gameWin() {
     const winElement = document.getElementById("gameOverWin");

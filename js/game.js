@@ -1,8 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let mexican_Melodie = new Audio('audio/210. Mexican.mp3');
-let startGame = false;
+
+let isMuted = false;
 
 
 function init(){
@@ -12,7 +12,7 @@ function init(){
  async function newGame() {
     canvas = document.getElementById('canvas');
     initLevel();
-    world = new World(canvas, keyboard, startGame);
+    world = new World(canvas, keyboard);
     setTimeout(() => {
         showGame();
     }, 500);
@@ -44,6 +44,19 @@ function gameOver(){
     setTimeout(() => {
         winElement.classList.add("visible");
     }, 100);
+}
+
+
+function mute() {
+    let audioImage = document.getElementById("mute");
+   
+      if (isMuted) {
+        audioImage.src = 'img/icons8-low-volume-64.png';
+      } 
+      else {
+        audioImage.src = 'img/icons8-mute-64.png';
+      }
+      isMuted = !isMuted;
 }
 
 function initMobile() {

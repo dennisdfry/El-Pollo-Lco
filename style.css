@@ -121,3 +121,31 @@ h1{
 .gameOver-section{
     position: absolute;
 }
+
+.orientation-warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/* @media screen and (max-width: 768px) {
+    .teaser-class {
+        background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
+        width: 90vw; 
+        height: calc(90vw * 0.6667); 
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        border-radius: 8px;
+    }
+} */

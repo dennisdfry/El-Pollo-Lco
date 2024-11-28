@@ -1,99 +1,99 @@
-let canvas;
 let world;
 let keyboard = new Keyboard();
 let fullscreen = false;
 let isMuted = false;
+const canvas = document.getElementById('canvas');
+const startButton = document.getElementById('startButton');
+const infoButton = document.getElementById('infoButton');
+const orientationWarning = document.getElementById("orientationWarning");
+const steeringHide = document.getElementById("steeringSection");
+const steeringSection1 = document.getElementById("steeringSection1");
+const steeringSection2 = document.getElementById("steeringSection2");
+const muteFullScreen = document.getElementById('muteFull');
+const teaser = document.getElementById('teaser');
 
+function checkScreenSize() {
+    const orientationWarning = document.getElementById("orientationWarning");
+    const steeringSection = document.getElementById("steeringSection");
+    const isSmallScreen = window.innerWidth < 730; // Bildschirm kleiner als 730px
+    const isMediumScreen = window.innerWidth >= 730 && window.innerWidth <= 768; // Bildschirm zwischen 730px und 768px
+    const isLargeScreen = window.innerWidth > 768; // Bildschirm größer als 768px
 
-function init(){
-    newGame();
-    // mexican_Melodie.play();
+    if (isSmallScreen) {
+        // Bei einem Bildschirm kleiner als 730px: Orientierungswarnung anzeigen und Steuerung ausblenden
+        orientationWarning.classList.remove("d-none");
+        steeringSection.classList.add("d-none");
+        canvas.classList.add('d-none');
+    } else if (isMediumScreen) {
+        // Bei einem Bildschirm zwischen 730px und 768px: Steuerung anzeigen
+        orientationWarning.classList.add("d-none");
+        steeringSection.classList.remove("d-none");
+    } else if (isLargeScreen) {
+        // Bei einem Bildschirm größer als 768px: Steuerung ausblenden
+        orientationWarning.classList.add("d-none");
+        steeringSection.classList.add("d-none");
+    }
 }
- async function newGame() {
-    canvas = document.getElementById('canvas');
+
+
+function init() {
+    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+    // if (isPortrait) {
+    //     alert("Bitte drehen Sie Ihr Gerät ins Querformat, um zu starten.");
+    //     return;
+    // }
+    
+    newGame();
+    window.addEventListener("resize", checkScreenSize);
+    checkScreenSize();
+}
+
+async function newGame() {
     initLevel();
     world = new World(canvas, keyboard);
     setTimeout(() => {
         showGame();
     }, 500);
-   
 }
 
-function showGame(){
-    startButton = document.getElementById('startButton');
-    infoButton = document.getElementById('infoButton');
-    steeringHide = document.getElementById('steeringSection');
-    steeringHide.classList.remove('d-none')
-    infoButton.classList.add('d-none');
-    startButton.classList.add('d-none');
-    canvas.classList.remove('d-none');  
-}
+function showGame() {
+    const startButton = document.getElementById('startButton');
+    const infoButton = document.getElementById('infoButton');
+    const canvas = document.getElementById('canvas');
 
+    if (window.innerWidth >= 768) {
+        startButton.classList.add('d-none');
+        infoButton.classList.add('d-none');
+        canvas.classList.remove('d-none');
+    }
+}
 
 function gameWin() {
     const winElement = document.getElementById("gameOverWin");
-    winElement.classList.remove("d-none"); 
+    winElement.classList.remove("d-none");
     setTimeout(() => {
         winElement.classList.add("visible");
     }, 100);
 }
 
-function gameOver(){
+function gameOver() {
     const winElement = document.getElementById("gameOver");
-    winElement.classList.remove("d-none"); 
+    winElement.classList.remove("d-none");
     setTimeout(() => {
         winElement.classList.add("visible");
     }, 100);
 }
-
-// function toggleFullscreen() {
-//     let content = document.getElementById("content");
-//     let fullscreenImage = document.getElementById("fullscreen");
-//     if (fullscreen) {
-//         fullscreenImage.src = 'img/10_extras/vollbild.png';
-//         exitFullscreen();
-//         content.classList.remove('fullscreen-mode');
-//     }
-//     else {
-//         fullscreenImage.src = 'img/10_extras/minimieren.png';
-//         enterFullscreen(document.getElementById("content"));
-//         content.classList.add('fullscreen-mode');
-//     }
-//     fullscreen = !fullscreen;
-// }
-
-// function exitFullscreen() {
-//     if (document.exitFullscreen) {
-//         document.exitFullscreen();
-//     } else if (document.mozCancelFullScreen) {
-//         document.mozCancelFullScreen();
-//     } else if (document.webkitExitFullscreen) {
-//         document.webkitExitFullscreen();
-//     } else if (document.msExitFullscreen) {
-//         document.msExitFullscreen();
-//     }
-// }
-
-// function exitHandler() {
-//     let content = document.getElementById("content");
-//     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-//         document.getElementById("fullscreen").src = 'img/10_extras/vollbild.png';
-//         content.classList.remove('fullscreen-mode');
-//         fullscreen = false;
-//     }
-// }
-
 
 function mute() {
     let audioImage = document.getElementById("mute");
-   
-      if (isMuted) {
+
+    if (isMuted) {
         audioImage.src = 'img/icons8-low-volume-64.png';
-      } 
-      else {
+    }
+    else {
         audioImage.src = 'img/icons8-mute-64.png';
-      }
-      isMuted = !isMuted;
+    }
+    isMuted = !isMuted;
 }
 
 function initMobile() {
@@ -101,7 +101,7 @@ function initMobile() {
     mobileKeyReleaseEvents();
 }
 
-function openInfoSection(){
+function openInfoSection() {
     let position = document.getElementById('openSection');
     position.classList.remove('d-none');
 }
@@ -112,55 +112,55 @@ function closeInfoSection() {
 }
 
 window.addEventListener("keydown", (e) => {
-    if(e.keyCode == 68){
+    if (e.keyCode == 68) {
         keyboard.D = true;
         keyboard.lastInteraction = true;
     };
-    if(e.keyCode == 39){
+    if (e.keyCode == 39) {
         keyboard.RIGHT = true;
         keyboard.lastInteraction = true;
     };
-    if(e.keyCode == 37){
+    if (e.keyCode == 37) {
         keyboard.LEFT = true;
         keyboard.lastInteraction = true;
     };
-    if(e.keyCode == 38){
+    if (e.keyCode == 38) {
         keyboard.UP = true;
         keyboard.lastInteraction = true;
     };
-    if(e.keyCode == 40){
+    if (e.keyCode == 40) {
         keyboard.DOWN = true;
         keyboard.lastInteraction = true;
     };
-    if(e.keyCode == 32){
+    if (e.keyCode == 32) {
         keyboard.SPACE = true;
         keyboard.lastInteraction = true;
     };
-}); 
+});
 
 window.addEventListener("keyup", (e) => {
-    
-    if(e.keyCode == 68){
+
+    if (e.keyCode == 68) {
         keyboard.D = false;
         keyboard.lastInteraction = false;
     };
-    if(e.keyCode == 39){
+    if (e.keyCode == 39) {
         keyboard.RIGHT = false;
         keyboard.lastInteraction = false;
     };
-    if(e.keyCode == 37){
+    if (e.keyCode == 37) {
         keyboard.LEFT = false;
         keyboard.lastInteraction = false;
     };
-    if(e.keyCode == 38){
+    if (e.keyCode == 38) {
         keyboard.UP = false;
         keyboard.lastInteraction = false;
     };
-    if(e.keyCode == 40){
+    if (e.keyCode == 40) {
         keyboard.DOWN = false;
         keyboard.lastInteraction = false;
     };
-    if(e.keyCode == 32){
+    if (e.keyCode == 32) {
         keyboard.SPACE = false;
         keyboard.lastInteraction = false;
     };
@@ -191,9 +191,6 @@ function mobileKeyPressEvents() {
 }
 
 
-/**
- * This function sets the key to false, after releasing them (mobile)
- */
 function mobileKeyReleaseEvents() {
     const leftButton = document.getElementById('leftButton');
     leftButton.addEventListener('touchend', (e) => {

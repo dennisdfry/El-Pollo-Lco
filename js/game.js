@@ -28,6 +28,7 @@ function checkScreenSize() {
         // Bei einem Bildschirm zwischen 730px und 768px: Steuerung anzeigen
         orientationWarning.classList.add("d-none");
         steeringSection.classList.remove("d-none");
+        canvas.classList.remove('d-none');
     } else if (isLargeScreen) {
         // Bei einem Bildschirm größer als 768px: Steuerung ausblenden
         orientationWarning.classList.add("d-none");
@@ -37,12 +38,8 @@ function checkScreenSize() {
 
 
 function init() {
-    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-    // if (isPortrait) {
-    //     alert("Bitte drehen Sie Ihr Gerät ins Querformat, um zu starten.");
-    //     return;
-    // }
-    
+    startButton.classList.add('d-none');
+    infoButton .classList.add('d-none');
     newGame();
     window.addEventListener("resize", checkScreenSize);
     checkScreenSize();

@@ -47,6 +47,7 @@ function init() {
 
 async function newGame() {
     initLevel();
+    initMobile();
     world = new World(canvas, keyboard);
     setTimeout(() => {
         showGame();

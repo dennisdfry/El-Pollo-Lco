@@ -45,8 +45,10 @@
                 <h1>El Pollo Loco</h1>
             </div>
             <div  class="teaser-class d-flex jtf-center align-items flex-column">
+                
                 <button onclick="init()" id="startButton" class="btn pointer">Game Start</button>
                 <img id="gameOver" class="gameOver-section d-none win-img" src="img/9_intro_outro_screens/game_over/game over.png" alt="">
+                <button id="restartGame" onclick="restartGame()" class="gameover-button btn pointer d-none">New Game</button>
                 <img id="gameOverWin" class="win-section d-none win-img" src="img/9_intro_outro_screens/win/win_1.png" alt="">
                 <canvas class="d-none" id="canvas" width="720" height="480"></canvas>
                 <div id="infoButton" class="d-flex jtf-center">

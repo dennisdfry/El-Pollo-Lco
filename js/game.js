@@ -54,6 +54,12 @@ async function newGame() {
     }, 500);
 }
 
+function restartGame(){
+    newGame();
+    const winElement = document.getElementById("gameOver");
+    winElement.classList.remove('d-none');
+}
+
 function showGame() {
     const startButton = document.getElementById('startButton');
     const infoButton = document.getElementById('infoButton');
@@ -69,17 +75,23 @@ function showGame() {
 function gameWin() {
     const winElement = document.getElementById("gameOverWin");
     winElement.classList.remove("d-none");
+    const restartButton = document.getElementById('restartGame');
     setTimeout(() => {
         winElement.classList.add("visible");
     }, 100);
+    restartButton.classList.remove('d-none');
+
 }
 
 function gameOver() {
     const winElement = document.getElementById("gameOver");
+    const restartButton = document.getElementById('restartGame')
     winElement.classList.remove("d-none");
     setTimeout(() => {
         winElement.classList.add("visible");
     }, 100);
+    restartButton.classList.remove('d-none');
+    
 }
 
 function mute() {

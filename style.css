@@ -116,6 +116,12 @@ h1{
 
 .gameOver-section{
     position: absolute;
+    z-index: 1;
+}
+
+.gameover-button{
+    position: absolute;
+    z-index: 2;
 }
 
 .orientation-warning {

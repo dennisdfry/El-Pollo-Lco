@@ -31,8 +31,56 @@ h1{
     background-repeat: no-repeat;
     border-radius: 8px;
 }
-.steering_section{
-    width:720px;
+.steering_section {
+    max-width: 720px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 8px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#steeringSection1,
+#steeringSection2 {
+    flex: 0; /* Verhindert Ausdehnung */
+}
+
+.mute-section {
+    flex: 1; /* Nimmt den restlichen Platz ein */
+    display: flex;
+    justify-content: center; /* Zentriert den Mute-Button */
+    align-items: center;
+}
+
+.steering_section {
+    max-width: 720px;
+    width: 100%;
+    position: fixed; 
+    bottom: 0;
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 1000;
+    padding: 8px;
+    border-radius: 8px 8px 0 0; /* Optional: Abgerundete Ecken */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+@media screen and (orientation: landscape) and (max-width: 768px) {
+    .steering_section {
+        height: auto; /* Passt die Höhe dynamisch an */
+    }
+    .teaser-text{
+        display: none;
+    }
+    
 }
 .info-section{
     background: rgba(0, 0, 0, 0.5);

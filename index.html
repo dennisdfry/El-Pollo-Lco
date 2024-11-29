@@ -41,7 +41,7 @@
             <p>Bitte drehen Sie Ihr Gerät ins Querformat, um das Spiel zu starten.</p>
         </div>
         <div id="content" class="d-flex jtf-center flex-column">
-            <div class="text-ctr">
+            <div class="teaser-text" class="text-ctr">
                 <h1>El Pollo Loco</h1>
             </div>
             <div  class="teaser-class d-flex jtf-center align-items flex-column">
@@ -55,20 +55,33 @@
                     <img class="pointer info-button" onclick="openInfoSection()" src="img/icons8-info-64.png" alt="">
                 </div>
             </div>
-            <div id="steeringSection" class="d-none d-flex jtf-center steering-section space-btw">
-                <div id="steeringSection1" class=" d-flex space-btw margLeft-8">
-                    <img id="leftButton" class="pointer game-button" src="img/icons8-pfeil-64.png" alt="">
-                    <img id="rightButton" class="pointer game-button" src="img/icons8-pfeil-64 (1).png" alt="">
+            <div id="steeringSection" class="d-none d-flex jtf-center steering_section space-btw">
+                <div id="steeringSection1" class="d-flex space-btw margLeft-8">
+                    <img id="leftButton" class="img-32 pointer game-button" src="img/icons8-pfeil-64.png" alt="">
+                    <img id="rightButton" class="img-32 pointer game-button" src="img/icons8-pfeil-64 (1).png" alt="">
                 </div>
-                <div onclick="mute()" class="d-flex align-items">
-                    <img  id="mute" class="mute-button pointer" src="img/icons8-low-volume-64.png" alt="">
+                <div class="mute-section">
+                    <img id="mute" class="img-32 mute-button pointer" src="img/icons8-low-volume-64.png" alt="">
                 </div>
                 <div id="steeringSection2" class="d-flex align-items margRight-8">
-                    <img id="jumpButton" class="pointer game-button" src="img/icons8-pfeil-64 (2).png" alt="">
-                    <img id="throwButton" class="throwButton pointer game-button" class="img-64"
-                        src="img/icons8-bottle-of-water-48.png" alt="">
+                    <img id="jumpButton" class="img-32 pointer game-button" src="img/icons8-pfeil-64 (2).png" alt="">
+                    <img id="throwButton" class="img-32 throwButton pointer game-button" src="img/icons8-bottle-of-water-48.png" alt="">
                 </div>
             </div>
+            <!-- <div id="steeringSection" class="d-none d-flex jtf-center steering-section space-btw">
+                <div id="steeringSection1" class=" d-flex space-btw margLeft-8">
+                    <img id="leftButton" class="img-32 pointer game-button" src="img/icons8-pfeil-64.png" alt="">
+                    <img id="rightButton" class="img-32 pointer game-button" src="img/icons8-pfeil-64 (1).png" alt="">
+                </div>
+                <div onclick="mute()" class="d-flex align-items">
+                    <img  id="mute" class="img-32 mute-button pointer" src="img/icons8-low-volume-64.png" alt="">
+                </div>
+                <div id="steeringSection2" class="d-flex align-items margRight-8">
+                    <img id="jumpButton" class="img-32 pointer game-button" src="img/icons8-pfeil-64 (2).png" alt="">
+                    <img id="throwButton" class="img-32 throwButton pointer game-button" class="img-64"
+                        src="img/icons8-bottle-of-water-48.png" alt="">
+                </div>
+            </div> -->
         </div>
     </div>
     <div id="openSection" class="d-none align-items flex-column d-flex jtf-center info-section">

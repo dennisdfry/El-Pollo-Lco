@@ -12,36 +12,91 @@ const steeringSection2 = document.getElementById("steeringSection2");
 const muteFullScreen = document.getElementById('muteFull');
 const teaser = document.getElementById('teaser');
 
+
+// function checkScreenSize() {
+//     const orientationWarning = document.getElementById("orientationWarning");
+//     const steeringSection = document.getElementById("steeringSection");
+//     const isSmallScreen = window.innerWidth < 730; // Bildschirm kleiner als 730px
+//     const isMediumScreen = window.innerWidth >= 730 && window.innerWidth <= 768; // Bildschirm zwischen 730px und 768px
+//     const isLargeScreen = window.innerWidth > 768; // Bildschirm größer als 768px
+//     const isLandscape = window.innerWidth > window.innerHeight; // Querformat
+//     const canvas = document.getElementById('canvas');
+    
+//     if (isSmallScreen) {
+//         // Bei einem Bildschirm kleiner als 730px: Orientierungswarnung anzeigen und Steuerung ausblenden
+//         orientationWarning.classList.remove("d-none");
+//         steeringSection.classList.add("d-none");
+//         canvas.classList.add('d-none');
+//     } else if (isMediumScreen) {
+//         // Bei einem Bildschirm zwischen 730px und 768px: Steuerung anzeigen
+//         orientationWarning.classList.add("d-none");
+//         steeringSection.classList.remove("d-none");
+//         canvas.classList.remove('d-none');
+
+//         // Querformat: Canvas-Höhe auf 320px setzen
+//         if (isLandscape) {
+//             canvas.style.height = "300px";
+//         } else {
+//             canvas.style.height = ""; // Standardhöhe zurücksetzen
+//         }
+//     } else if (isLargeScreen) {
+//         // Bei einem Bildschirm größer als 768px: Steuerung ausblenden
+//         orientationWarning.classList.add("d-none");
+//         steeringSection.classList.add("d-none");
+//         canvas.style.height = ""; // Standardhöhe zurücksetzen
+//     }
+// }
+
 function checkScreenSize() {
     const orientationWarning = document.getElementById("orientationWarning");
     const steeringSection = document.getElementById("steeringSection");
     const isSmallScreen = window.innerWidth < 730; // Bildschirm kleiner als 730px
     const isMediumScreen = window.innerWidth >= 730 && window.innerWidth <= 768; // Bildschirm zwischen 730px und 768px
     const isLargeScreen = window.innerWidth > 768; // Bildschirm größer als 768px
-
+    const isLandscape = window.innerWidth > window.innerHeight; // Querformat
+    
+    const canvas = document.getElementById('canvas');
+    
     if (isSmallScreen) {
-        // Bei einem Bildschirm kleiner als 730px: Orientierungswarnung anzeigen und Steuerung ausblenden
         orientationWarning.classList.remove("d-none");
         steeringSection.classList.add("d-none");
         canvas.classList.add('d-none');
     } else if (isMediumScreen) {
-        // Bei einem Bildschirm zwischen 730px und 768px: Steuerung anzeigen
         orientationWarning.classList.add("d-none");
         steeringSection.classList.remove("d-none");
         canvas.classList.remove('d-none');
+
+        // Querformat: Fixiere Steering Section am unteren Rand
+        if (isLandscape) {
+            steeringSection.style.position = "fixed";
+            steeringSection.style.bottom = "0";
+            steeringSection.style.left = "50%";
+            steeringSection.style.transform = "translateX(-50%)";
+            canvas.style.height = "300px";
+        } else {
+            // Hochformat: Standard-Styling zurücksetzen
+            steeringSection.style.position = "static";
+            canvas.style.height = "";
+        }
     } else if (isLargeScreen) {
-        // Bei einem Bildschirm größer als 768px: Steuerung ausblenden
         orientationWarning.classList.add("d-none");
         steeringSection.classList.add("d-none");
+        canvas.style.height = ""; // Standardhöhe zurücksetzen
     }
 }
 
 
 function init() {
+
+    const teaserElement = document.querySelector('.teaser-class');
+    if (teaserElement) {
+        teaserElement.style.backgroundImage = 'none';
+    }
     startButton.classList.add('d-none');
     infoButton .classList.add('d-none');
     newGame();
     window.addEventListener("resize", checkScreenSize);
+    window.addEventListener("orientationchange", checkScreenSize);
     checkScreenSize();
 }
 
@@ -95,6 +150,7 @@ function gameOver() {
 }
 
 function mute() {
+    console.log(isMuted)
     let audioImage = document.getElementById("mute");
 
     if (isMuted) {
@@ -104,6 +160,7 @@ function mute() {
         audioImage.src = 'img/icons8-mute-64.png';
     }
     isMuted = !isMuted;
+    console.log(isMuted)
 }
 
 function initMobile() {

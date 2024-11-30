@@ -73,6 +73,7 @@ class Character extends MovableObject {
     lastInteractionStart;
     lastInteractionTime;
     lastInteractionfalse = false;
+    energyCharacter = 100;
     
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -122,6 +123,8 @@ class Character extends MovableObject {
                 this.resetSleepTimer();
                 gameOver();
                 this.world.gameOver = false;
+                this.energy = 100;
+                this.world.stopAllIntervals();
             } else if
                 (this.isAboveGround()) {
                 this.playAnimation(this.JUMPING_Images);

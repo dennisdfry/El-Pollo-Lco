@@ -22,6 +22,7 @@ class World {
     defaultdeathChicken = [];
     bottlePercentage = 0;
     bottleCounter = 0;
+    intervalIds = []; 
     killSound = new Audio('audio/jump_kill.mp3');
     bottleDestroy = new Audio('audio/bottle_destroy.mp3');
     coinCollectSound = new Audio('audio/coin.mp3');
@@ -74,24 +75,32 @@ class World {
     }
 
     run() {
-        setInterval(() => {
+        this.intervalIds.push(setInterval(() => {
             this.checkThrowObjects();
             this.checkThrowableObjectsWithCollisionEndboss();
             this.checkBackgroundMusic();
-        }, 200);
-        setInterval(() => {
+        }, 200));
+        this.intervalIds.push(setInterval(() => {
             this.checkCollision();
-        }, 50);
+        }, 50));
     }
+
+    stopAllIntervals() {
+        this.intervalIds.forEach(clearInterval);
+        console.log("Alle Intervalle gestoppt");
+    }
+
 
     checkBackgroundMusic() {
         if (isMuted) {
-            this.mexican_Melodie.pause();
-        }
-        else if (!this.gameOver) {
-            this.gameOver_Melodie.play();
-            this.mexican_Melodie.pause();
-        }          
+            this.mexican_Melodie.pause(); 
+        }else{this.mexican_Melodie.play()}
+    }
+
+    gameOverMusic(){
+        this.gameOver_Melodie.play();
+        this.mexican_Melodie.pause();
+        this.gameOver = true;
     }
 
     checkKillChicken() {

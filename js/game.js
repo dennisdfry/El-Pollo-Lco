@@ -13,40 +13,6 @@ const muteFullScreen = document.getElementById('muteFull');
 const teaser = document.getElementById('teaser');
 
 
-// function checkScreenSize() {
-//     const orientationWarning = document.getElementById("orientationWarning");
-//     const steeringSection = document.getElementById("steeringSection");
-//     const isSmallScreen = window.innerWidth < 730; // Bildschirm kleiner als 730px
-//     const isMediumScreen = window.innerWidth >= 730 && window.innerWidth <= 768; // Bildschirm zwischen 730px und 768px
-//     const isLargeScreen = window.innerWidth > 768; // Bildschirm größer als 768px
-//     const isLandscape = window.innerWidth > window.innerHeight; // Querformat
-//     const canvas = document.getElementById('canvas');
-    
-//     if (isSmallScreen) {
-//         // Bei einem Bildschirm kleiner als 730px: Orientierungswarnung anzeigen und Steuerung ausblenden
-//         orientationWarning.classList.remove("d-none");
-//         steeringSection.classList.add("d-none");
-//         canvas.classList.add('d-none');
-//     } else if (isMediumScreen) {
-//         // Bei einem Bildschirm zwischen 730px und 768px: Steuerung anzeigen
-//         orientationWarning.classList.add("d-none");
-//         steeringSection.classList.remove("d-none");
-//         canvas.classList.remove('d-none');
-
-//         // Querformat: Canvas-Höhe auf 320px setzen
-//         if (isLandscape) {
-//             canvas.style.height = "300px";
-//         } else {
-//             canvas.style.height = ""; // Standardhöhe zurücksetzen
-//         }
-//     } else if (isLargeScreen) {
-//         // Bei einem Bildschirm größer als 768px: Steuerung ausblenden
-//         orientationWarning.classList.add("d-none");
-//         steeringSection.classList.add("d-none");
-//         canvas.style.height = ""; // Standardhöhe zurücksetzen
-//     }
-// }
-
 function checkScreenSize() {
     const orientationWarning = document.getElementById("orientationWarning");
     const steeringSection = document.getElementById("steeringSection");
@@ -109,10 +75,17 @@ async function newGame() {
     }, 500);
 }
 
-function restartGame(){
+function restartGame() {
+    const restartButton = document.getElementById('restartGame');
+    const gameOverElement = document.getElementById("gameOver");
+    const gameWinElement = document.getElementById("gameOverWin");
+    gameOverElement.classList.add('d-none');
+    gameOverElement.classList.remove("visible");
+    gameWinElement.classList.add('d-none');
+    gameWinElement.classList.remove("visible");
+    restartButton.classList.add('d-none');
+    
     newGame();
-    const winElement = document.getElementById("gameOver");
-    winElement.classList.remove('d-none');
 }
 
 function showGame() {

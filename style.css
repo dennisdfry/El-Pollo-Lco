@@ -48,13 +48,13 @@ h1{
 
 #steeringSection1,
 #steeringSection2 {
-    flex: 0; /* Verhindert Ausdehnung */
+    flex: 0;
 }
 
 .mute-section {
-    flex: 1; /* Nimmt den restlichen Platz ein */
+    flex: 1;
     display: flex;
-    justify-content: center; /* Zentriert den Mute-Button */
+    justify-content: center; 
     align-items: center;
 }
 
@@ -67,7 +67,7 @@ h1{
     transform: translateX(-50%); 
     z-index: 1000;
     padding: 8px;
-    border-radius: 8px 8px 0 0; /* Optional: Abgerundete Ecken */
+    border-radius: 8px 8px 0 0; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,10 +75,22 @@ h1{
 
 @media screen and (orientation: landscape) and (max-width: 768px) {
     .steering_section {
-        height: auto; /* Passt die Höhe dynamisch an */
+        height: auto; 
     }
     .teaser-text{
         display: none;
+    }
+    .win-section{
+        position: absolute;
+        width: 720px;
+        height:320px;
+    }
+
+    .gameOver-section{
+        position: absolute;
+        z-index: 1;
+        width: 720px;
+        height:320px;
     }
     
 }

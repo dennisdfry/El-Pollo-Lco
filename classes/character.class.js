@@ -125,6 +125,7 @@ class Character extends MovableObject {
                 this.world.gameOver = false;
                 this.energy = 100;
                 this.world.stopAllIntervals();
+                this.world.gameOverMusic();
             } else if
                 (this.isAboveGround()) {
                 this.playAnimation(this.JUMPING_Images);

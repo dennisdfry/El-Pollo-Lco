@@ -84,7 +84,7 @@ function restartGame() {
     gameWinElement.classList.add('d-none');
     gameWinElement.classList.remove("visible");
     restartButton.classList.add('d-none');
-    
+    world.intervalIds = [];
     newGame();
 }
 

@@ -90,6 +90,13 @@ class World {
         }, 50));
     }
 
+    checkCollisionCharacterFinalboss() {
+        if (this.character.isColliding(this.level.endboss)) {
+            this.gameOver = true;
+            this.character.energy = 0;
+        };
+    }
+
     stopAllIntervals() {
         this.intervalIds.forEach(clearInterval);
         console.log("Alle Intervalle gestoppt");
@@ -99,7 +106,13 @@ class World {
     checkBackgroundMusic() {
         if (isMuted) {
             this.mexican_Melodie.pause(); 
-        }else{this.mexican_Melodie.play()}
+        }else{
+            try {
+                this.mexican_Melodie.play()
+            } catch (error) {
+               console.log('error play music') 
+            }
+            }
     }
 
     gameOverMusic(){
@@ -107,6 +120,10 @@ class World {
         this.mexican_Melodie.pause();
         this.gameOver = true;
     }
+    gameWinMusic(){
+        this.world.mexican_Melodie.pause();  
+    }
+
 
     checkKillChicken() {
         this.level.enemies.forEach((enemy, index) => {
@@ -145,6 +162,7 @@ class World {
         this.checkCollisionWithChicken();
         this.checkKillLittleChicken();
         this.checkCollisionLittleChicken();
+        this.checkCollisionCharacterFinalboss();
     }
 
     checkKillLittleChicken() {

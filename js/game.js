@@ -66,7 +66,7 @@ function init() {
     checkScreenSize();
 }
 
-async function newGame() {
+function newGame() {
     initLevel();
     initMobile();
     world = new World(canvas, keyboard);
@@ -109,6 +109,7 @@ function gameWin() {
         winElement.classList.add("visible");
     }, 100);
     restartButton.classList.remove('d-none');
+  
 
 }
 

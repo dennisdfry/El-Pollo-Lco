@@ -8,6 +8,7 @@ class Endboss extends MovableObject {
     i = 0;
     energyFinalBoss = 100;
     firstTimeContact;
+    intervalEndboss = [];
 
     endbossKillSound = new Audio('audio/endbossKill.mp3');
 
@@ -98,8 +99,7 @@ class Endboss extends MovableObject {
     isDeadFinalBoss() {
         return this.energyFinalBoss == 0;
     }
-
-
+   
     /**
      * animation of the final boss
      * 
@@ -108,6 +108,10 @@ class Endboss extends MovableObject {
         if (this.isDeadFinalBoss()) {
             this.finalBossAnnimationDead();
             gameWin();
+            this.stopAllIntervalsEndboss();
+            this.world.gameOver = false;
+            this.energy = 100;
+            this.world.gameOverMusic();
         }
         else if (this.isHurtFinalBoss()) {
             this.finalBossAnnimationHurt();
@@ -184,6 +188,10 @@ class Endboss extends MovableObject {
        timepassed = timepassed / 1000;
         return timepassed > 2;
     }
+    stopAllIntervalsEndboss() {
+        this.intervalEndboss.forEach(clearInterval);
+        console.log("Alle Intervalle gestoppt");
+    }
 
 
     /**
@@ -191,10 +199,11 @@ class Endboss extends MovableObject {
      * 
      */
     animate() {
-      
+        this.intervalEndboss.push(
         setInterval(() => {
             this.finalBossAnnimation();            
-        }, 200);
+        }, 200));
+        this.intervalEndboss.push(
         setInterval(() => {
             if (this.hadFirstContact &&  !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
                 this.finalBossFirstContact();
@@ -205,11 +214,12 @@ class Endboss extends MovableObject {
                     }else{
                     this.x -= this.speed;    
                   }}
-        }, 1000 / 60);
+        }, 1000 / 60));
+        this.intervalEndboss.push(
         setInterval(() => {
             if (this.isHurtFinalBoss()) {
                 // this.playSound(world.finalbossHurt_sound);
             }
-        }, 100);
+        }, 100));
     }
 }

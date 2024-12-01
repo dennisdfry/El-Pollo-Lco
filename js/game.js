@@ -85,7 +85,8 @@ function restartGame() {
     gameWinElement.classList.remove("visible");
     restartButton.classList.add('d-none');
     world.intervalIds = [];
-    newGame();
+    newGame(); 
+    
 }
 
 function showGame() {
@@ -118,7 +119,10 @@ function gameOver() {
     setTimeout(() => {
         winElement.classList.add("visible");
     }, 100);
-    restartButton.classList.remove('d-none');
+    setTimeout(() => {
+        restartButton.classList.remove('d-none');  
+    }, 7000);
+   
     
 }
 

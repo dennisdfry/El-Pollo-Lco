@@ -133,6 +133,7 @@ function mute() {
         audioImage.src = 'img/icons8-mute-64.png';
     }
     isMuted = !isMuted;
+    world.isMuted = !world.isMuted;
     console.log(isMuted)
 }
 

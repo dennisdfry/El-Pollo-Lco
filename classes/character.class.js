@@ -64,8 +64,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/long_idle/I-19.png',
         'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
-
-    // world;
     speed = 10;
     walking_sound = new Audio('audio/walking_sound.mp3');
     jumping_sound = new Audio('audio/springen.mp3');
@@ -73,7 +71,7 @@ class Character extends MovableObject {
     lastInteractionStart;
     lastInteractionTime;
     lastInteractionfalse = false;
-    energyCharacter = 100;
+    intervalCharacter = [];
     
     constructor() {
         super().loadImage('img/2_character_pepe/1_idle/idle/I-1.png');
@@ -88,60 +86,123 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    // animate() {
+    // this.intervalCharacter.push(setInterval(() => {
+    //     this.walking_sound.pause();
+    //     if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+    //         this.moveRight();
+    //         if (this.firstContactEndboss(this.x)) {
+    //             console.log('first point');
+    //             this.world.level.endboss.hadFirstContact = true;
+    //             this.world.level.endboss.firstTimeContact = new Date().getTime();
+    //         }
+    //         this.walking_sound.play();
+    //         this.otherDirection = false;
+    //     }
+    //     if (this.world.keyboard.LEFT && this.x > 0) {
+    //         this.moveLeft();
+    //         this.walking_sound.play();
+    //         this.otherDirection = true;
+    //     }
+    //     if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+    //         this.jump();
+    //         if (this.y >= 150) {
+    //             this.y = 150;
+    //         }
+    //         this.jumping_sound.currentTime = 0;
+    //         this.jumping_sound.play();
+    //     }
+    //     this.world.camera_x = -this.x + 100;
+    // }, 1000 / 60));
+
+    //     setInterval(() => {
+    //         if(this.isDead()) {
+    //             this.playAnimation(this.DEAD_Images);
+    //             this.resetSleepTimer();
+    //             gameOver();
+    //             this.world.gameOver = false;
+    //             this.energy = 100;
+    //             this.stopAllIntervals();
+    //             this.world.stopAllIntervals();
+    //             this.world.gameOverMusic();
+    //         } else if
+    //             (this.isAboveGround()) {
+    //             this.playAnimation(this.JUMPING_Images);
+    //             this.resetSleepTimer();
+    //         } else if (this.isHurt()) {
+    //             this.playAnimation(this.isHurt_Images);
+    //             this.resetSleepTimer();
+    //         } else if
+    //             (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+    //             this.playAnimation(this.Walking_Images);
+    //             this.resetSleepTimer();
+    //         } else if
+    //         (this.sleepAnimation(this.lastInteractionStart)){
+    //             this.playAnimation(this.sleeping_IMAGES) 
+    //         }  else {
+    //             this.playAnimation(this.Stand_Image) 
+    //             if (!this.lastInteractionfalse) {
+    //                 this.lastInteractionStart = new Date().getTime();
+    //                 this.lastInteractionfalse = true;
+    //             }
+    //         }
+    //     }, 100);
     animate() {
-        setInterval(() => {
-            this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                if (this.firstContactEndboss(this.x)) {
-                    console.log('first point')
-                    this.world.level.endboss.hadFirstContact = true;
-                    this.world.level.endboss.firstTimeContact = new Date().getTime();
+        this.intervalCharacter.push(
+            setInterval(() => {
+                this.walking_sound.pause();
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                    if (this.firstContactEndboss(this.x)) {
+                        console.log('first point');
+                        this.world.level.endboss.hadFirstContact = true;
+                        this.world.level.endboss.firstTimeContact = new Date().getTime();
+                    }
+                    if (!this.world.isMuted) this.walking_sound.play();
+                    this.otherDirection = false;
                 }
-                this.walking_sound.play();
-                this.otherDirection = false;
-            };
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.walking_sound.play();
-                this.otherDirection = true;
-            };
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-                if (this.y >= 150) {
-                    this.y = 150;
+                if (this.world.keyboard.LEFT && this.x > 0) {
+                    this.moveLeft();
+                    if (!this.world.isMuted) this.walking_sound.play();
+                    this.otherDirection = true;
                 }
-                this.jumping_sound.currentTime = 0;
-                this.jumping_sound.play();
-            }
-            this.world.camera_x = -this.x + 100;
-        }, 1000 / 60);
+                if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                    this.jump();
+                    if (this.y >= 150) {
+                        this.y = 150;
+                    }
+                    if (!this.world.isMuted) {
+                        this.jumping_sound.currentTime = 0;
+                        this.jumping_sound.play();
+                    }
+                }
+                this.world.camera_x = -this.x + 100;
+            }, 1000 / 60)
+        );
 
         setInterval(() => {
-            if(this.isDead()) {
+            if (this.isDead()) {
                 this.playAnimation(this.DEAD_Images);
                 this.resetSleepTimer();
                 gameOver();
                 this.world.gameOver = false;
                 this.energy = 100;
+                this.stopAllIntervals();
                 this.world.stopAllIntervals();
                 this.world.gameOverMusic();
-            } else if
-                (this.isAboveGround()) {
+            } else if (this.isAboveGround()) {
                 this.playAnimation(this.JUMPING_Images);
                 this.resetSleepTimer();
             } else if (this.isHurt()) {
                 this.playAnimation(this.isHurt_Images);
                 this.resetSleepTimer();
-            } else if
-                (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.Walking_Images);
                 this.resetSleepTimer();
-            } else if
-            (this.sleepAnimation(this.lastInteractionStart)){
-                this.playAnimation(this.sleeping_IMAGES) 
-            }  else {
-                this.playAnimation(this.Stand_Image) 
+            } else if (this.sleepAnimation(this.lastInteractionStart)) {
+                this.playAnimation(this.sleeping_IMAGES);
+            } else {
+                this.playAnimation(this.Stand_Image);
                 if (!this.lastInteractionfalse) {
                     this.lastInteractionStart = new Date().getTime();
                     this.lastInteractionfalse = true;
@@ -154,4 +215,9 @@ class Character extends MovableObject {
         this.lastInteractionStart = new Date().getTime();
         this.lastInteractionfalse = false; 
     };
+
+    stopAllIntervals() {
+        this.intervalCharacter.forEach(clearInterval);
+        console.log("Alle Intervalle gestoppt");
+    }
 }

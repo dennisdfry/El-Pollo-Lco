@@ -29,6 +29,7 @@ class World {
     bottleCollectSound = new Audio('audio/bottleCollect.mp3');
     mexican_Melodie = new Audio('audio/210. Mexican.mp3');
     gameOver_Melodie = new Audio('audio/gameOver.mp3');
+    isMuted = false;
 
     constructor(canvas, keyboard, startGame) {
         this.ctx = canvas.getContext('2d');
@@ -51,7 +52,9 @@ class World {
                     this.coinBar.setPercentage(this.counterForCoins);   
                     if (this.coinCollectSound.paused) {
                         this.coinCollectSound.currentTime = 0; // Setze den Sound zurück
+                        if(!this.isMuted){
                         this.coinCollectSound.play(); // Spiele den Sound ab
+                    }
                     }
                 }
             })
@@ -68,7 +71,9 @@ class World {
                     this.bottlePercentage = this.bottlePercentage + 10;
                     this.bottleBar.setPercentage(this.bottlePercentage);
                     this.bottleCounter++;
+                    if(!this.isMuted){
                     this.bottleCollectSound.play();
+                    }
                 }
             });
         }, 50);
@@ -108,7 +113,9 @@ class World {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 if (!enemy.chickenisDeath) {
                     this.character.jump();
+                    if(!this.isMuted){
                     this.killSound.play();
+                    }
                     enemy.chickenisDeath = true;
                     setTimeout(() => {
                         console.log
@@ -145,7 +152,9 @@ class World {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {
                 if (!enemy.chickenisDeath) {
                     this.character.jump();
+                    if(!this.isMuted){
                     this.killSound.play();
+                    }
                     enemy.chickenisDeath = true;
                     setTimeout(() => {
                         this.level.smallChicken.splice(index, 1);

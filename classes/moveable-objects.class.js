@@ -79,13 +79,36 @@ class MovableObject extends DrawableObject {
         }
     }
   
-    isCollidingEndboss(bottle, endboss){
-        return (
-            endboss.x < bottle.x + bottle.width &&
-            endboss.x + endboss.width > bottle.x &&
-            endboss.y < bottle.y + bottle.height &&
-            endboss.y + endboss.height > bottle.y
-        );
+    // isCollidingEndboss(bottle, endboss){
+    //     return (
+    //         endboss.x < bottle.x + bottle.width &&
+    //         endboss.x + endboss.width > bottle.x &&
+    //         endboss.y < bottle.y + bottle.height &&
+    //         endboss.y + endboss.height > bottle.y
+    //     );
+    // }
+
+    isCollidingWithEndboss(bottle, endboss) {
+        return bottle.x + bottle.width > endboss.x &&
+               bottle.x < endboss.x + endboss.width &&
+               bottle.y + bottle.height > endboss.y &&
+               bottle.y < endboss.y + endboss.height;
+    }
+
+    isCollidingWithSmallTarget(mo) {
+        const buffer = 5; // Kleiner Puffer, um die Hitbox anzupassen
+        return this.x + this.width - buffer > mo.x &&
+               this.y + this.height - buffer > mo.y &&
+               this.x + buffer < mo.x + mo.width &&
+               this.y + buffer < mo.y + mo.height;
+    }
+
+    isBottleCollidingWithEnemy(bottle, enemy) {
+        const hitboxAdjustment = 10; // Passe die Hitbox der Flasche an
+        return bottle.x + bottle.width - hitboxAdjustment > enemy.x &&
+               bottle.y + bottle.height - hitboxAdjustment > enemy.y &&
+               bottle.x + hitboxAdjustment < enemy.x + enemy.width &&
+               bottle.y + hitboxAdjustment < enemy.y + enemy.height;
     }
     
     sleepAnimation(lastInteractionStart){

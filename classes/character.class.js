@@ -118,17 +118,19 @@ class Character extends MovableObject {
                 this.world.camera_x = -this.x + 100;
             }, 1000 / 60)
         );
-
+        this.intervalCharacter.push(
         setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.DEAD_Images);
                 this.resetSleepTimer();
                 gameOver();
                 this.world.gameOver = false;
+                console.log(this.world.gameOver)
                 this.energy = 100;
+                this.world.checkBackgroundMusic();
+                this.world.gameOverMusic();
                 this.stopAllIntervals();
                 this.world.stopAllIntervals();
-                this.world.gameOverMusic();
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.JUMPING_Images);
                 this.resetSleepTimer();
@@ -147,7 +149,7 @@ class Character extends MovableObject {
                     this.lastInteractionfalse = true;
                 }
             }
-        }, 100);
+        }, 100));
     }
 
     resetSleepTimer() {
@@ -157,6 +159,5 @@ class Character extends MovableObject {
 
     stopAllIntervals() {
         this.intervalCharacter.forEach(clearInterval);
-        console.log("Alle Intervalle gestoppt");
     }
 }

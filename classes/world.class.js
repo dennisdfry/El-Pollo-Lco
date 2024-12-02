@@ -105,7 +105,7 @@ class World {
 
 
     checkBackgroundMusic() {
-        if (isMuted || this.level.endboss.energyFinalBoss == 0) {
+        if (isMuted || this.level.endboss.energyFinalBoss == 0 || !this.gameOver ) {
             this.mexican_Melodie.pause(); 
         }else{
             try {
@@ -194,18 +194,33 @@ class World {
     checkThrowableObjectsWithCollisionEndboss() {
         this.throwableObjects.forEach((bottle, index) => {
             this.checkCollisionBottleWithEndboss(bottle, index);
+            this.checkCollisionBottleGround(bottle, index);
         })
     }
 
-    checkCollisionBottleWithEndboss(bottle, index) {
+    checkCollisionBottleGround(bottle, index) {
+        if (!bottle.isAboveGround()) {
+            console.log(bottle.y)
+            bottle.playSound(this.bottleBroke_sound);
+            setTimeout(() => {
+                this.throwableObjects.splice(index, 1)
+            }, 50);
+        };
+    }
+ 
 
+
+    checkCollisionBottleWithEndboss(bottle, index) {
         if (this.level.endboss.isColliding(bottle)) {
-            console.log('treffer');
             this.level.endboss.hitFinalBoss();
             this.endbossStatusbar.setPercentageEndboss(this.level.endboss.energyFinalBoss);
             this.bottleDestroy.play();
 
         }
+    }
+
+    gameOverMusic(){
+        this.gameOver_Melodie.play();
     }
 
 

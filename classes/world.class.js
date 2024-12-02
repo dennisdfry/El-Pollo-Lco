@@ -2,7 +2,7 @@ class World {
     character = new Character();
     chicken = new Chicken();
     smallChicken = new SmallChicken();
-    endboss = new Endboss();
+    endboss = new Endboss(this);
     level = level1;
     canvas;
     ctx;
@@ -29,6 +29,7 @@ class World {
     bottleCollectSound = new Audio('audio/bottleCollect.mp3');
     mexican_Melodie = new Audio('audio/210. Mexican.mp3');
     gameOver_Melodie = new Audio('audio/gameOver.mp3');
+    
     isMuted = false;
 
     constructor(canvas, keyboard, startGame) {
@@ -104,7 +105,7 @@ class World {
 
 
     checkBackgroundMusic() {
-        if (isMuted) {
+        if (isMuted || this.level.endboss.energyFinalBoss == 0) {
             this.mexican_Melodie.pause(); 
         }else{
             try {
@@ -114,17 +115,7 @@ class World {
             }
             }
     }
-
-    gameOverMusic(){
-        this.gameOver_Melodie.play();
-        this.mexican_Melodie.pause();
-        this.gameOver = true;
-    }
-    gameWinMusic(){
-        this.world.mexican_Melodie.pause();  
-    }
-
-
+  
     checkKillChicken() {
         this.level.enemies.forEach((enemy, index) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround()) {

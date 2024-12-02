@@ -9,8 +9,9 @@ class Endboss extends MovableObject {
     energyFinalBoss = 100;
     firstTimeContact;
     intervalEndboss = [];
-
+    winSound = new Audio('audio/people.mp3');
     endbossKillSound = new Audio('audio/endbossKill.mp3');
+   
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -55,7 +56,7 @@ class Endboss extends MovableObject {
 
     hadFirstContact = false;
 
-    constructor() {
+    constructor(world) {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ALERT);
@@ -64,6 +65,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.speed = 2;
         this.animate();
+        this.world = world;
     }
 
     /**
@@ -107,11 +109,8 @@ class Endboss extends MovableObject {
     finalBossAnnimation() {
         if (this.isDeadFinalBoss()) {
             this.finalBossAnnimationDead();
-            gameWin();
             this.stopAllIntervalsEndboss();
-            this.world.gameOver = false;
             this.energy = 100;
-            this.world.gameOverMusic();
         }
         else if (this.isHurtFinalBoss()) {
             this.finalBossAnnimationHurt();
@@ -135,11 +134,8 @@ class Endboss extends MovableObject {
      */
     finalBossAnnimationDead() {
         this.playAnimation(this.IMAGES_DEAD);
-        world.gameOver = true;
-        setTimeout(() => {
-       
-            // gameOverWin();
-        }, 100);
+         gameWin()
+         this.winSound.play();
     }
 
 

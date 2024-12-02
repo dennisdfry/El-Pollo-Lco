@@ -108,9 +108,9 @@ function gameWin() {
     setTimeout(() => {
         winElement.classList.add("visible");
     }, 100);
-    restartButton.classList.remove('d-none');
-  
-
+    setTimeout(() => {
+        restartButton.classList.remove('d-none');  
+    }, 4000);
 }
 
 function gameOver() {

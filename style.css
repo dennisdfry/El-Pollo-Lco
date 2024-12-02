@@ -162,12 +162,18 @@ h1{
 }
 .win-section{
     position: absolute;
+    max-width: 720px;
+    height: 420px;
+   
+
 }
 
 .win-img {
     display: block;
     opacity: 0;
     transition: opacity 2s ease-in-out; 
+    object-fit: contain;
+    
 }
 
 .win-img.visible {

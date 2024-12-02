@@ -134,8 +134,11 @@ class Endboss extends MovableObject {
      */
     finalBossAnnimationDead() {
         this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+            this.winSound.play();
+        }, 1000);
          gameWin()
-         this.winSound.play();
+        
     }
 
 

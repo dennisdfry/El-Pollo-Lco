@@ -200,8 +200,10 @@ class World {
 
     checkCollisionBottleGround(bottle, index) {
         if (!bottle.isAboveGround()) {
-            console.log(bottle.y)
+            console.log(bottle.y);
+            if (!this.isMuted) {
             bottle.playSound(this.bottleBroke_sound);
+        }
             setTimeout(() => {
                 this.throwableObjects.splice(index, 1)
             }, 50);

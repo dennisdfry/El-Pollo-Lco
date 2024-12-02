@@ -81,7 +81,6 @@ class Character extends MovableObject {
         this.loadImages(this.isHurt_Images);
         this.loadImages(this.sleeping_IMAGES);
         this.loadImages(this.Stand_Image);
-        // this.loadImage('img/9_intro_outro_screens/game_over/game over.png');
         this.applyGravity();
         this.animate();
     }
@@ -93,7 +92,6 @@ class Character extends MovableObject {
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                     this.moveRight();
                     if (this.firstContactEndboss(this.x)) {
-                        console.log('first point');
                         this.world.level.endboss.hadFirstContact = true;
                         this.world.level.endboss.firstTimeContact = new Date().getTime();
                     }
@@ -125,7 +123,6 @@ class Character extends MovableObject {
                 this.resetSleepTimer();
                 gameOver();
                 this.world.gameOver = false;
-                console.log(this.world.gameOver)
                 this.energy = 100;
                 this.world.checkBackgroundMusic();
                 this.world.gameOverMusic();

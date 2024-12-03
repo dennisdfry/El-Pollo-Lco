@@ -4,7 +4,7 @@ class Character extends MoveableObject{
     height = 250;
     width = 120;
     y = 115;
-    speed = 5;
+    speed = 7;
     standingTime = 0;
     IMAGES_STANDING = [
         'img/2_character_pepe/1_idle/idle/I-1.png',
@@ -156,10 +156,10 @@ class Character extends MoveableObject{
      * checks if the character is moving
      * 
      */
-    characterMoving() {
+    characterMove() {
         world.walking_sound.pause();
-        this.characterMovingRight();
-        this.characterMovingLeft();
+        this.characterMoveRight();
+        this.characterMoveLeft();
         this.characterJump(); 
         world.camera_x = -this.x + 120;
     }
@@ -169,7 +169,7 @@ class Character extends MoveableObject{
      * checks if the character is moving right
      * 
      */
-    characterMovingRight() {
+    characterMoveRight() {
         if(world.keyboard.RIGHT && isLoading) {
             this.moveRight();
             this.playSound(world.walking_sound);
@@ -181,7 +181,7 @@ class Character extends MoveableObject{
      * checks if the character is moving left
      * 
      */
-    characterMovingLeft() {
+    characterMoveLeft() {
         if(world.keyboard.LEFT && isLoading) {
             this.moveLeft();
             this.playSound(world.walking_sound);
@@ -290,7 +290,7 @@ class Character extends MoveableObject{
      */
     animate() {
         setInterval(() =>{
-            this.characterMoving();
+            this.characterMove();
         }, 1000 / 60);
         setInterval(() =>{    
             this.characterAnnimation();

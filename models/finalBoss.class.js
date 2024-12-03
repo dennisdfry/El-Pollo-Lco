@@ -1,17 +1,10 @@
 
-class Endboss extends MovableObject {
+class FinalBoss extends MoveableObject {
 
     width = 200;
     height = 400;
-    x = 3200;
-    y = 60;
+    y = 0;
     i = 0;
-    energyFinalBoss = 100;
-    firstTimeContact;
-    intervalEndboss = [];
-    winSound = new Audio('audio/people.mp3');
-    endbossKillSound = new Audio('audio/endbossKill.mp3');
-   
 
     IMAGES_WALK = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -56,7 +49,7 @@ class Endboss extends MovableObject {
 
     hadFirstContact = false;
 
-    constructor(world) {
+    constructor() {
         super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_ALERT);
@@ -64,16 +57,17 @@ class Endboss extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
         this.speed = 2;
+        this.x = 2000;
         this.animate();
-        this.world = world;
     }
+
 
     /**
      * drains energy from the target
      * 
      */
     hitFinalBoss() {
-        this.energyFinalBoss -= 15;    
+        this.energyFinalBoss -= 10;    
         if (this.energyFinalBoss < 0) {
             this.energyFinalBoss = 0;
         }
@@ -101,7 +95,8 @@ class Endboss extends MovableObject {
     isDeadFinalBoss() {
         return this.energyFinalBoss == 0;
     }
-   
+
+
     /**
      * animation of the final boss
      * 
@@ -109,22 +104,21 @@ class Endboss extends MovableObject {
     finalBossAnnimation() {
         if (this.isDeadFinalBoss()) {
             this.finalBossAnnimationDead();
-            this.stopAllIntervalsEndboss();
-            this.energy = 100;
         }
         else if (this.isHurtFinalBoss()) {
             this.finalBossAnnimationHurt();
         }        
-        else if (this.hadFirstContact) {
-            this.finalBossAnnimationAttack();     
-        }
-        else if (this.finalBossFirstContact()) {
-           this.finalBossAnnimationWalk();
-        }
-        else {        
+        else if (this.i < 15) {
             this.finalBossAnnimationAlert();     
         }
-          
+        else if (this.i < 30) {
+            this.finalBossAnnimationAttack();
+        }
+        else {        
+            this.finalBossAnnimationWalk();
+        }
+        this.i++;    
+        this.finalBossFirstContact();   
     }
 
 
@@ -133,12 +127,14 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossAnnimationDead() {
-        this.playAnimation(this.IMAGES_DEAD);
+        this.playAnnimation(this.IMAGES_DEAD);
+        world.gameOver = true;
+        world.background_music.pause()
         setTimeout(() => {
-            this.winSound.play();
-        }, 1000);
-         gameWin()
-        
+            this.clearAllIntervals();
+            this.playSound(world.win_sound);
+            gameOverWin();
+        }, 1500);
     }
 
 
@@ -147,7 +143,7 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossAnnimationHurt() {
-        this.playAnimation(this.IMAGES_HURT);
+        this.playAnnimation(this.IMAGES_HURT);
     }
 
 
@@ -156,7 +152,7 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossAnnimationAlert() {
-        this.playAnimation(this.IMAGES_ALERT); 
+        this.playAnnimation(this.IMAGES_ALERT); 
     }
 
 
@@ -165,7 +161,7 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossAnnimationAttack() {
-        this.playAnimation(this.IMAGES_ATTACK);
+        this.playAnnimation(this.IMAGES_ATTACK);
     }
     
 
@@ -174,7 +170,7 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossAnnimationWalk() {
-        this.playAnimation(this.IMAGES_WALK);
+        this.playAnnimation(this.IMAGES_WALK);
     }
 
 
@@ -183,13 +179,10 @@ class Endboss extends MovableObject {
      * 
      */
     finalBossFirstContact() {
-       let timepassed = new Date().getTime() - this.firstTimeContact;
-       timepassed = timepassed / 1000;
-        return timepassed > 2;
-    }
-    stopAllIntervalsEndboss() {
-        this.intervalEndboss.forEach(clearInterval);
-        console.log("Alle Intervalle gestoppt");
+        if (world.character.x > 1425 && !this.hadFirstContact) {
+            this.i = 0;
+            this.hadFirstContact = true;
+        }
     }
 
 
@@ -198,27 +191,18 @@ class Endboss extends MovableObject {
      * 
      */
     animate() {
-        this.intervalEndboss.push(
         setInterval(() => {
             this.finalBossAnnimation();            
-        }, 200));
-        this.intervalEndboss.push(
+        }, 200);
         setInterval(() => {
-            if (this.hadFirstContact &&  !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
-                this.finalBossFirstContact();
-                  }
-                  if(this.finalBossFirstContact()){
-                    if(this.energyFinalBoss == 0){
-                        this.speed = 0
-                    }else{
-                    this.x -= this.speed;    
-                  }}
-        }, 1000 / 60));
-        this.intervalEndboss.push(
+            if (this.hadFirstContact && this.i > 30 && !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {
+                this.x -= this.speed;    
+            }        
+        }, 1000 / 60);
         setInterval(() => {
             if (this.isHurtFinalBoss()) {
-                // this.playSound(world.finalbossHurt_sound);
+                this.playSound(world.finalbossHurt_sound);
             }
-        }, 100));
+        }, 100);
     }
 }

@@ -83,17 +83,18 @@ button:hover {
     scale: 1.1;
 }
 
-.miniBtns {
+.Btns {
     position: absolute;
     top: 15px;
     right: 30px;
     gap: 8px;
 }
-
-.miniBtns img {
-    width: 30px;
-    height: 30px;
+.button-mute{
+    width:56px;
+    height:56px;
 }
+
+
 
 .miniBtns img:hover {
     scale: 1.2;

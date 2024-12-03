@@ -215,7 +215,7 @@ function exitHandler() {
 function showHelpPage() {
     let help = document.getElementById('help');
     help.classList.remove('d-none');
-    help.innerHTML = showHelpFirstPage();
+    help.innerHTML = helpDeskFirstPage();
 }
 
 
@@ -235,7 +235,7 @@ function closeHelpPage() {
  */
 function showFirstPage() {
     let help = document.getElementById('help');
-    help.innerHTML = showHelpFirstPage();
+    help.innerHTML = helpDeskFirstPage();
 }
 
 
@@ -245,7 +245,7 @@ function showFirstPage() {
  */
 function showSecondPage() {
     let help = document.getElementById('help');
-    help.innerHTML = showHelpSecondPage();
+    help.innerHTML = helpDeskSecondPage();
 }
 
 
@@ -255,7 +255,7 @@ function showSecondPage() {
  */
 function showThirdPage() {
     let help = document.getElementById('help');
-    help.innerHTML = showHelpThirdPage();
+    help.innerHTML = helpDeskThirdPage();
 }
 
 /**

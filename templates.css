@@ -37,7 +37,7 @@
 .pointer{
     cursor: pointer;
 }
-.btn:hover{
+.btn-me:hover{
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease;
 }

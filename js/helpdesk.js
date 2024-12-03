@@ -2,7 +2,7 @@
  * 
  * @returns the html code for the first help page
  */
-function showHelpFirstPage() {
+function helpDeskFirstPage() {
     return /*html */ `
         <div class=" d-flex justify-content-center align-items-center gapHelp" >
             <img class="closeImg position-absolute" src="img/icons8-close-50.png" alt="" onclick="closeHelpPage()">
@@ -24,7 +24,7 @@ function showHelpFirstPage() {
  * 
  * @returns the html code for the second help page
  */
-function showHelpSecondPage() {
+function helpDeskSecondPage() {
     return /*html */ `
         <div class=" d-flex justify-content-center align-items-center gapHelp" >
             <img class="closeImg position-absolute" src="img/icons8-close-50.png" alt="" onclick="closeHelpPage()">
@@ -44,7 +44,7 @@ function showHelpSecondPage() {
  * 
  * @returns the html code for the third help page
  */
-function showHelpThirdPage() {
+function helpDeskThirdPage() {
     return /*html */ `
         <div class=" d-flex justify-content-center align-items-center gapHelp" >
             <img class="closeImg position-absolute" src="img/icons8-close-50.png" alt="" onclick="closeHelpPage()">

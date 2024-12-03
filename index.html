@@ -27,7 +27,7 @@
     <script src="./models/throwable-object.class.js"></script>        
     <script src="./models/finalBoss.class.js"></script>      
     <script src="./levels/level1.js"></script>    
-    <script src="./js/templates.js"></script>    
+    <script src="./js/helpdesk.js"></script>    
     <script src="./js/game.js"></script>
    
     <!-- Bootstrap -->
@@ -64,10 +64,10 @@
             <div id="canvasContent" class="width-height-100 d-none">
                 <canvas class="width-height-100" id="canvas" width="720px" height="420px"></canvas>
             </div>
-            <div class="miniBtns d-flex position-absolute">
-                <img id="audio" src="img/icons8-low-volume-64.png" alt="" onclick="toggleMute()">
-                <img id="fullscreen" src="img/icons8-wiedergabe-eingekreist-64.png" alt="" onclick="toggleFullscreen()">
-                <img id="settings" src="img/icons8-info-64.png" alt="" onclick="showHelpPage()">
+            <div class="Btns d-flex position-absolute align-items-center">
+                <img class="pointer button-mute" id="audio" src="img/icons8-low-volume-64.png" alt="" onclick="toggleMute()">
+                <img class="pointer" id="fullscreen" src="img/icons8-wiedergabe-eingekreist-64.png" alt="" onclick="toggleFullscreen()">
+                <img class="pointer" id="settings" src="img/icons8-info-64.png" alt="" onclick="showHelpPage()">
             </div>
             
             <div id="leftMobile-container" class="position-absolute d-none">

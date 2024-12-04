@@ -53,8 +53,8 @@ class MoveableObject extends DrawableObject {
 
     isColliding(mo) {
         if (this instanceof Character) {
-            let characterBufferX = 20;
-            let characterBufferY = 20; 
+            let characterBufferX = 40;
+            let characterBufferY = 40; 
             return this.x + characterBufferX < mo.x + mo.width &&
                 this.x + this.width - characterBufferX > mo.x &&
                 this.y + characterBufferY < mo.y + mo.height &&

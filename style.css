@@ -209,7 +209,7 @@ button:hover {
 
 .impressum {
     font-size: 24px;
-    max-height: 150px;
+    max-height: 250px;
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;

@@ -1,31 +1,31 @@
 
 
 class MoveableObject extends DrawableObject {
-     
+
     speed = 0.15;
     otherDirection = false;
     speedY = 0.5;
-    acceleration = 1.7 ;
+    acceleration = 1.7;
     energy = 100;
     energyFinalBoss = 100;
     lastHit = 0;
     lastHitFinalBoss = 0;
     notMoving = 0;
-   
+
 
     /**
      * reduce the y height of an object (fake gravity)
      * 
      */
     applyGravity() {
-        setInterval(() => { 
+        setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.speedY -= this.acceleration;  
+                this.speedY -= this.acceleration;
                 if (this.y > 116 && this instanceof Character) {
                     this.y = 115.5;
-                }  
-            }                     
+                }
+            }
         }, 1000 / 25);
     }
 
@@ -38,24 +38,27 @@ class MoveableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {
             return this.y <= 280;
         }
-        else{ 
+        else {
             return this.y <= 115;
-        } 
-        
+        }
+
     }
-   
+
 
     /**
      * 
      * @param {object} mo 
      * @returns if an object collides withe the moveable object (mo)
      */
+
     isColliding(mo) {
         if (this instanceof Character) {
-            return this.x + 60 + this.width - 105 > mo.x &&
-                this.y + this.height > mo.y &&
-                this.x + 60 < mo.x + mo.width &&
-                this.y + 130 < mo.y + mo.height;
+            let characterBufferX = 20;
+            let characterBufferY = 20; 
+            return this.x + characterBufferX < mo.x + mo.width &&
+                this.x + this.width - characterBufferX > mo.x &&
+                this.y + characterBufferY < mo.y + mo.height &&
+                this.y + this.height - characterBufferY > mo.y;
         }
         else {
             return this.x + this.width > mo.x &&
@@ -63,9 +66,8 @@ class MoveableObject extends DrawableObject {
                 this.x < mo.x + mo.width &&
                 this.y < mo.y + mo.height;
         }
-        
-    } 
-    
+    }
+
 
     /**
      * plays an annimation
@@ -89,6 +91,6 @@ class MoveableObject extends DrawableObject {
             this.x -= this.speed;
         }
     }
-    
+
 
 }

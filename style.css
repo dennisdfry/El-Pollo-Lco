@@ -187,7 +187,20 @@ button:hover {
     width: 180px;
     height: 310px;
 }
+.impressum_h1{
+    margin-block-start: 0;
+}
+.impressum {
+    font-size: 24px;
+    max-height: 150px; 
+    overflow-y: scroll; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
 
+.impressum::-webkit-scrollbar {
+    display: none; 
+}
 .nextBtn {
     right: 50px;
     bottom: 20px;

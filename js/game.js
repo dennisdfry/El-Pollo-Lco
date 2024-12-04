@@ -215,7 +215,7 @@ function exitHandler() {
 function showHelpPage() {
     let help = document.getElementById('help');
     help.classList.remove('d-none');
-    help.innerHTML = helpDeskFirstPage();
+    help.innerHTML = impressum();
 }
 
 
@@ -235,7 +235,7 @@ function closeHelpPage() {
  */
 function showFirstPage() {
     let help = document.getElementById('help');
-    help.innerHTML = helpDeskFirstPage();
+    help.innerHTML = impressum();
 }
 
 
@@ -245,7 +245,7 @@ function showFirstPage() {
  */
 function showSecondPage() {
     let help = document.getElementById('help');
-    help.innerHTML = helpDeskSecondPage();
+    help.innerHTML = helpDeskFirstPage();
 }
 
 
@@ -254,6 +254,11 @@ function showSecondPage() {
  * 
  */
 function showThirdPage() {
+    let help = document.getElementById('help');
+    help.innerHTML = helpDeskSecondPage();
+}
+
+function showFourthPage() {
     let help = document.getElementById('help');
     help.innerHTML = helpDeskThirdPage();
 }

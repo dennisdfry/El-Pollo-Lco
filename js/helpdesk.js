@@ -1,3 +1,27 @@
+
+function impressum() {
+    return /*html */ `
+        <div class=" d-flex justify-content-center align-items-center gapHelp" >
+            <img class="closeImg position-absolute" src="img/icons8-close-50.png" alt="" onclick="closeHelpPage()">
+            <div class="d-flex flex-column align-items-center margin-top">
+            <h1 class="impressum_h1">Impressum</h1>  
+            <p class="impressum ">
+
+            Angaben gemäß § 5 TMG
+            Dennis Freyer
+            E-Mail: info@dennisfreyer.dev
+
+            Haftungsausschluss
+            Dieses Jump-and-Run-Spiel wurde ausschließlich zu Lern- und Unterhaltungszwecken entwickelt. Es ist keine Anmeldung erforderlich, und es werden keine personenbezogenen Daten gespeichert. Die Nutzung erfolgt auf eigene Verantwortung.
+
+            Urheberrecht
+            Die Inhalte und Grafiken dieses Spiels wurden von Dennis Freyer erstellt oder rechtmäßig verwendet. Eine kommerzielle Nutzung ist nicht gestattet.</p>     
+            </div>  
+            <button class="position-absolute nextBtn d-flex justify-content-center align-items-center" onclick="showSecondPage()">Next</button>
+        </div>            
+    `;
+}
+
 /**
  * 
  * @returns the html code for the first help page
@@ -5,7 +29,7 @@
 function helpDeskFirstPage() {
     return /*html */ `
         <div class=" d-flex justify-content-center align-items-center gapHelp" >
-            <img class="closeImg position-absolute" src="img/icons8-close-50.png" alt="" onclick="closeHelpPage()">
+            <img class="closeImg position-absolute" src="img/icons8-close-50.png" alt="" onclick="showSecondPage()">
             <img class="pepe d-flex align-items-center" src="img/2_character_pepe/2_walk/W-21.png" alt="">
             <div class="d-flex flex-column align-items-center margin-top">
                 <span>WALK</span>
@@ -14,7 +38,7 @@ function helpDeskFirstPage() {
                 <img class="" src="img/right.png" alt="">
                 </div>
             </div>                
-            <button class="position-absolute nextBtn d-flex justify-content-center align-items-center" onclick="showSecondPage()">Next</button>
+            <button class="position-absolute nextBtn d-flex justify-content-center align-items-center" onclick="showThirdPage()">Next</button>
         </div>            
     `;
 }
@@ -33,7 +57,7 @@ function helpDeskSecondPage() {
                 <span>JUMP</span>
                 <img class="" src="img/icons8-pfeil-64 (2).png" alt="">
             </div>                
-            <button class="position-absolute nextBtn d-flex justify-content-center align-items-center" onclick="showThirdPage()">Next</button>
+            <button class="position-absolute nextBtn d-flex justify-content-center align-items-center" onclick="showFourthPage()">Next</button>
             <button class="position-absolute backBtn d-flex justify-content-center align-items-center" onclick="showFirstPage()">Back</button>
         </div>                
     `;
@@ -61,7 +85,7 @@ function helpDeskThirdPage() {
                 <img class="" src="img/icons8-d-67.png" alt="">
                 </div>
             </div>                
-            <button class="position-absolute backBtn d-flex justify-content-center align-items-center" onclick="showSecondPage()">Back</button>
+            <button class="position-absolute backBtn d-flex justify-content-center align-items-center" onclick="showHelpPage()">Back</button>
         </div>                
     `;
 }

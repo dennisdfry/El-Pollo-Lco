@@ -101,21 +101,21 @@ class FinalBoss extends MoveableObject {
      * animation of the final boss
      * 
      */
-    finalBossAnnimation() {
+    finalBossAnimate() {
         if (this.isDeadFinalBoss()) {
-            this.finalBossAnnimationDead();
+            this.finalBossAnimateDead();
         }
         else if (this.isHurtFinalBoss()) {
-            this.finalBossAnnimationHurt();
+            this.finalBossAnimateHurt();
         }        
         else if (this.i < 15) {
-            this.finalBossAnnimationAlert();     
+            this.finalBossAnimateAlert();     
         }
         else if (this.i < 30) {
-            this.finalBossAnnimationAttack();
+            this.finalBossAnimateAttack();
         }
         else {        
-            this.finalBossAnnimationWalk();
+            this.finalBossAnimateWalk();
         }
         this.i++;    
         this.finalBossFirstContact();   
@@ -126,8 +126,8 @@ class FinalBoss extends MoveableObject {
      * animation at death
      * 
      */
-    finalBossAnnimationDead() {
-        this.playAnnimation(this.IMAGES_DEAD);
+    finalBossAnimateDead() {
+        this.playAnimate(this.IMAGES_DEAD);
         world.gameOver = true;
         world.background_music.pause()
         setTimeout(() => {
@@ -142,8 +142,8 @@ class FinalBoss extends MoveableObject {
      * animation at hurt
      * 
      */
-    finalBossAnnimationHurt() {
-        this.playAnnimation(this.IMAGES_HURT);
+    finalBossAnimateHurt() {
+        this.playAnimate(this.IMAGES_HURT);
     }
 
 
@@ -151,8 +151,8 @@ class FinalBoss extends MoveableObject {
      * animation at alert
      * 
      */
-    finalBossAnnimationAlert() {
-        this.playAnnimation(this.IMAGES_ALERT); 
+    finalBossAnimateAlert() {
+        this.playAnimate(this.IMAGES_ALERT); 
     }
 
 
@@ -160,8 +160,8 @@ class FinalBoss extends MoveableObject {
      * animation at attack
      * 
      */
-    finalBossAnnimationAttack() {
-        this.playAnnimation(this.IMAGES_ATTACK);
+    finalBossAnimateAttack() {
+        this.playAnimate(this.IMAGES_ATTACK);
     }
     
 
@@ -169,8 +169,8 @@ class FinalBoss extends MoveableObject {
      * animation at walking
      * 
      */
-    finalBossAnnimationWalk() {
-        this.playAnnimation(this.IMAGES_WALK);
+    finalBossAnimateWalk() {
+        this.playAnimate(this.IMAGES_WALK);
     }
 
 
@@ -192,7 +192,7 @@ class FinalBoss extends MoveableObject {
      */
     animate() {
         setInterval(() => {
-            this.finalBossAnnimation();            
+            this.finalBossAnimate();            
         }, 200);
         setInterval(() => {
             if (this.hadFirstContact && this.i > 30 && !this.isDeadFinalBoss() && !this.isHurtFinalBoss()) {

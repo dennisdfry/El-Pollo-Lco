@@ -27,7 +27,7 @@ class Chicken extends MoveableObject{
      * 
      */
     chickenAnimateWalk() {
-        this.playAnnimation(this.IMAGES_WALKING); 
+        this.playAnimate(this.IMAGES_WALKING); 
     }
 
 

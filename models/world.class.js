@@ -21,10 +21,10 @@ class World {
     hurt_sound = new Audio('audio/jump_kill.mp3');
     dead_sound = new Audio('audio/gameOver.mp3');
     jumping_sound = new Audio('audio/jump_kill.mp3');
-    finalbossHurt_sound = new Audio('audio/jump_kill.mp3')
-    collectBottle_sound = new Audio('audio/jump_kill.mp3');
-    collectCoin_sound = new Audio('audio/jump_kill.mp3');
-    lose_sound = new Audio('audio/gameOver.mp3');
+    finalbossHurt_sound = new Audio('audio/endbossKill.mp3')
+    collectBottle_sound = new Audio('audio/bottleCollect.mp3');
+    collectCoin_sound = new Audio('audio/coin.mp3');
+    finalboss_killsound = new Audio('audio/endbossKill.mp3');
     bottleBroke_sound = new Audio('audio/bottle_destroy.mp3');
     throw_sound = new Audio('audio/bottle_destroy.mp3');
     win_sound = new Audio('audio/people.mp3');
@@ -254,7 +254,7 @@ class World {
             this.walking_sound.pause();
             this.level.finalboss.clearAllIntervals();
             gameOverLose();
-            this.level.finalboss.playSound(this.lose_sound);
+            this.level.finalboss.playSound(this.finalboss_killsound);
         };
     }
        

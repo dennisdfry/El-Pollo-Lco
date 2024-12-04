@@ -56,10 +56,10 @@ class ThrowableObject extends MoveableObject {
      */
     animate() {
         if (this.isAboveGround() && !this.isColliding) {
-            this.playAnnimation(this.IMAGES_ROATATION);  
+            this.playAnimate(this.IMAGES_ROATATION);  
         }
         else {
-            this.playAnnimation(this.IMAGES_SPLASH);  
+            this.playAnimate(this.IMAGES_SPLASH);  
         }
 
     }

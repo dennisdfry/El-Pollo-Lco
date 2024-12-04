@@ -35,7 +35,7 @@ class Coin extends MoveableObject {
      */
     coinAnimate() {
         if (!this.collected) {
-            this.playAnnimation(this.IMAGES);
+            this.playAnimate(this.IMAGES);
         }
     }
 

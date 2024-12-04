@@ -230,7 +230,7 @@ class Character extends MoveableObject{
      * 
      */
     characterAnimateDead() {
-        this.playAnnimation(this.IMAGES_DEAD);
+        this.playAnimate(this.IMAGES_DEAD);
         setTimeout(() => {
             this.clearAllIntervals();
             world.background_music.pause();
@@ -246,7 +246,7 @@ class Character extends MoveableObject{
      * 
      */
     characterAnimateHurt() {
-        this.playAnnimation(this.IMAGES_HURT);
+        this.playAnimate(this.IMAGES_HURT);
         this.standingTime = 0;
     }
 
@@ -256,7 +256,7 @@ class Character extends MoveableObject{
      * 
      */
     characterAnimateJump() {
-        this.playAnnimation(this.IMAGES_JUMPING);
+        this.playAnimate(this.IMAGES_JUMPING);
         this.standingTime = 0;
     }
 
@@ -266,7 +266,7 @@ class Character extends MoveableObject{
      * 
      */
     characterAnimateWalk() {
-        this.playAnnimation(this.IMAGES_WALKING);
+        this.playAnimate(this.IMAGES_WALKING);
         this.standingTime = 0;
     }
 
@@ -276,10 +276,10 @@ class Character extends MoveableObject{
      * 
      */
     characterAnimateStand() {
-        this.playAnnimation(this.IMAGES_STANDING);
+        this.playAnimate(this.IMAGES_STANDING);
         this.standingTime += 150;
         if (this.standingTime >=6000) {
-            this.playAnnimation(this.IMAGES_SLEEPING);
+            this.playAnimate(this.IMAGES_SLEEPING);
         }
     }
 

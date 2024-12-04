@@ -145,7 +145,7 @@ function toggleFullscreen() {
     let content = document.getElementById("content");
     let fullscreenImage = document.getElementById("fullscreen");
     if (fullscreen) {
-        fullscreenImage.src = 'img/icons8-wiedergabe-eingekreist-64.png';
+        fullscreenImage.src = 'img/icons8-expand-48.png';
         exitFullscreen();
         content.classList.remove('fullscreen-mode');
     }
@@ -200,7 +200,7 @@ function exitFullscreen() {
 function exitHandler() {
     let content = document.getElementById("content");
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        document.getElementById("fullscreen").src = 'img/icons8-wiedergabe-eingekreist-64.png';
+        document.getElementById("fullscreen").src = 'img/icons8-expand-48.png';
         content.classList.remove('fullscreen-mode');
         fullscreen = false;
     }

@@ -1,5 +1,3 @@
-
-
 body {
     margin: 0;
     overflow: hidden;
@@ -8,7 +6,7 @@ body {
 .background-image {
     background-repeat: 0;
     background-size: cover;
-    
+
 }
 
 .width-height-100 {
@@ -20,6 +18,12 @@ body {
     border-radius: 20px;
 }
 
+.fullscreen-icon {
+    width: 64px;
+    height: 64px;
+    padding: 8px
+}
+
 .section {
     background-image: url('img/5_background/complete_background.png');
     height: 100vh;
@@ -29,7 +33,7 @@ body {
 .fullscreen-mode {
     width: 100vw;
     height: 100vh;
-    max-width: 100vw; 
+    max-width: 100vw;
     max-height: 100vh;
     aspect-ratio: 420/720;
     object-fit: contain;
@@ -53,7 +57,7 @@ canvas {
 #content {
     height: 420px;
     width: 720px;
-    text-align: center;  
+    text-align: center;
 }
 
 
@@ -93,10 +97,11 @@ button:hover {
     right: 30px;
     gap: 8px;
 }
-.button-mute{
-    width:65px;
-    height:65px;
-   padding:4px;
+
+.button-mute {
+    width: 65px;
+    height: 65px;
+    padding: 4px;
 }
 
 
@@ -106,11 +111,15 @@ button:hover {
     cursor: pointer;
 }
 
-.loading, .help, .rotateDevice {
+.loading,
+.help,
+.rotateDevice {
     width: 100%;
     height: 100%;
-    background-color: #efe07c; /* Fallback-Farbe */
-    background-image: linear-gradient(to bottom, #e65100, #ffcc80); /* Dunkel-Orange zu Hell-Orange */
+    background-color: #efe07c;
+    /* Fallback-Farbe */
+    background-image: linear-gradient(to bottom, #e65100, #ffcc80);
+    /* Dunkel-Orange zu Hell-Orange */
     opacity: 1;
     font-size: 84px;
 }
@@ -130,12 +139,12 @@ button:hover {
     margin-top: 50px
 }
 
-.loading p{
+.loading p {
     margin: 0;
-    color:#353434;
+    color: #353434;
 }
 
-  .lds-dual-ring {
+.lds-dual-ring {
     display: inline-block;
     width: 130px;
     height: 130px;
@@ -148,8 +157,10 @@ button:hover {
     height: 100px;
     margin: 8px;
     border-radius: 50%;
-    border: 10px solid #353434; /* Hellgrau */
-    border-color: #353434 transparent #353434 transparent; /* Hell- und Dunkelgrau für Kontrast */
+    border: 10px solid #353434;
+    /* Hellgrau */
+    border-color: #353434 transparent #353434 transparent;
+    /* Hell- und Dunkelgrau für Kontrast */
     animation: lds-dual-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 
@@ -157,6 +168,7 @@ button:hover {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -174,7 +186,8 @@ button:hover {
     cursor: pointer;
 }
 
-.actionImg, .spaceImg {
+.actionImg,
+.spaceImg {
     height: 150px;
     width: 150px;
 }
@@ -187,34 +200,39 @@ button:hover {
     width: 180px;
     height: 310px;
 }
-.impressum_h1{
+
+.impressum_h1 {
     margin-block-start: 0;
     font-size: 40px !important;
     display: block !important;
 }
+
 .impressum {
     font-size: 24px;
-    max-height: 150px; 
-    overflow-y: scroll; 
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
+    max-height: 150px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-.icon{
+
+.icon {
     text-decoration: none;
     padding: 4px;
-    background-color:  #fbc80a;
+    background-color: #fbc80a;
     color: #353434;
     border-radius: 8px;
 }
-.icon:hover{
+
+.icon:hover {
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.3s ease; 
+    transition: box-shadow 0.3s ease;
 }
 
 .impressum::-webkit-scrollbar {
-    display: none; 
+    display: none;
 }
+
 .nextBtn {
     right: 50px;
     bottom: 20px;
@@ -248,7 +266,7 @@ button:hover {
     width: 60px;
     height: 60px;
 }
-  
+
 .mobile-container {
     bottom: 10px;
 }
@@ -260,7 +278,7 @@ button:hover {
     display: none;
 }
 
-#rightMobile-container{
+#rightMobile-container {
     bottom: 10px;
     right: 30px;
     gap: 16px;
@@ -277,7 +295,8 @@ button:hover {
 }
 
 @media only screen and (max-width: 1024px) {
-    #leftMobile-container, 
+
+    #leftMobile-container,
     #rightMobile-container {
         display: flex;
     }
@@ -290,12 +309,12 @@ button:hover {
 }
 
 @media only screen and (max-width: 650px) {
-    
+
     .rotateDevice {
         top: 0;
         left: 0;
         display: flex;
-    }   
+    }
 }
 
 @media only screen and (max-height: 530px) {

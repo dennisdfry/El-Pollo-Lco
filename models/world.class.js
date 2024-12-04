@@ -62,9 +62,13 @@ class World {
         setInterval(() => {
             this.checkCollision();
             this.checkBackgroundMusic();
+            
         }, 25);
         setInterval(() => {
             this.checkThrowObjects();
+        }, 150);
+        setInterval(() => {
+            
             this.checkCollisionThrowableObject();
         }, 200);
     }

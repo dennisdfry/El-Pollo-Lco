@@ -205,21 +205,21 @@ class Character extends MoveableObject{
      * animations of the character
      * 
      */
-    characterAnnimation() {
+    characterAnimate() {
         if (this.isDead()) {
-            this.characterAnnimationDead();            
+            this.characterAnimateDead();            
         }
         else if (this.isHurt()) {
-            this.characterAnnimationHurt();
+            this.characterAnimateHurt();
         }
         else if (this.isAboveGround()) {
-            this.characterAnnimationJump();
+            this.characterAnimateJump();
         } else{
             if(world.keyboard.RIGHT || world.keyboard.LEFT) {              
-                this.characterAnnimationWalk();
+                this.characterAnimateWalk();
             }
             else {
-               this.characterAnnimationStand(); 
+               this.characterAnimateStand(); 
             }         
         }
     }
@@ -229,7 +229,7 @@ class Character extends MoveableObject{
      * animation at death
      * 
      */
-    characterAnnimationDead() {
+    characterAnimateDead() {
         this.playAnnimation(this.IMAGES_DEAD);
         setTimeout(() => {
             this.clearAllIntervals();
@@ -245,7 +245,7 @@ class Character extends MoveableObject{
      * animation at hurt
      * 
      */
-    characterAnnimationHurt() {
+    characterAnimateHurt() {
         this.playAnnimation(this.IMAGES_HURT);
         this.standingTime = 0;
     }
@@ -255,7 +255,7 @@ class Character extends MoveableObject{
      * animation at jumping
      * 
      */
-    characterAnnimationJump() {
+    characterAnimateJump() {
         this.playAnnimation(this.IMAGES_JUMPING);
         this.standingTime = 0;
     }
@@ -265,7 +265,7 @@ class Character extends MoveableObject{
      * animation at walking
      * 
      */
-    characterAnnimationWalk() {
+    characterAnimateWalk() {
         this.playAnnimation(this.IMAGES_WALKING);
         this.standingTime = 0;
     }
@@ -275,7 +275,7 @@ class Character extends MoveableObject{
      * animation at standing
      * 
      */
-    characterAnnimationStand() {
+    characterAnimateStand() {
         this.playAnnimation(this.IMAGES_STANDING);
         this.standingTime += 150;
         if (this.standingTime >=6000) {
@@ -293,7 +293,7 @@ class Character extends MoveableObject{
             this.characterMove();
         }, 1000 / 60);
         setInterval(() =>{    
-            this.characterAnnimation();
+            this.characterAnimate();
         }, 100);
         setInterval(() => {
             if (this.isHurt()) {

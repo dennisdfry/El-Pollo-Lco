@@ -26,7 +26,7 @@ class Chicken extends MoveableObject{
      * animation at walking
      * 
      */
-    chickenAnnimationWalk() {
+    chickenAnimateWalk() {
         this.playAnnimation(this.IMAGES_WALKING); 
     }
 
@@ -35,7 +35,7 @@ class Chicken extends MoveableObject{
      * animation at death
      * 
      */
-    chickenAnnimationDead() {
+    chickenAnimateDead() {
         this.loadImage(this.IMAGES_DEAD);
         if (this.musicCounter === 0) {
             this.playSound(world.chickenDead_music);
@@ -58,10 +58,10 @@ class Chicken extends MoveableObject{
 
         setInterval(() => {
             if (!this.chickenIsDead) {
-                this.chickenAnnimationWalk();
+                this.chickenAnimateWalk();
             }
             else {
-                this.chickenAnnimationDead();
+                this.chickenAnimateDead();
             }      
         }, 200);
     }

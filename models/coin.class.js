@@ -33,7 +33,7 @@ class Coin extends MoveableObject {
      * animation of the coin
      * 
      */
-    coinAnnimation() {
+    coinAnimate() {
         if (!this.collected) {
             this.playAnnimation(this.IMAGES);
         }
@@ -49,7 +49,7 @@ class Coin extends MoveableObject {
             this.coinCollected();
         }, 100);
         setInterval(() => {
-            this.coinAnnimation();
+            this.coinAnimate();
         }, 500);
     }
 }

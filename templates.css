@@ -41,6 +41,11 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.3s ease;
 }
+.transition:hover{
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease; 
+}
 .img-64{
     width: 64px;
     height:64px;

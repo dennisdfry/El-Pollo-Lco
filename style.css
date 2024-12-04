@@ -8,6 +8,7 @@ body {
 .background-image {
     background-repeat: 0;
     background-size: cover;
+    
 }
 
 .width-height-100 {
@@ -90,8 +91,9 @@ button:hover {
     gap: 8px;
 }
 .button-mute{
-    width:56px;
-    height:56px;
+    width:65px;
+    height:65px;
+   padding:4px;
 }
 
 

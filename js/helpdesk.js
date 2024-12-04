@@ -3,9 +3,9 @@ function impressum() {
     return /*html */ `
         <div class=" d-flex justify-content-center align-items-center gapHelp" >
             <img class="closeImg position-absolute" src="img/icons8-close-50.png" alt="" onclick="closeHelpPage()">
-            <div class="d-flex flex-column align-items-center margin-top">
+            <div class=" impressum d-flex flex-column align-items-center margin-top">
             <h1 class="impressum_h1">Impressum</h1>  
-            <p class="impressum ">
+            <p class="">
 
             Angaben gemäß § 5 TMG
             Dennis Freyer
@@ -15,7 +15,9 @@ function impressum() {
             Dieses Jump-and-Run-Spiel wurde ausschließlich zu Lern- und Unterhaltungszwecken entwickelt. Es ist keine Anmeldung erforderlich, und es werden keine personenbezogenen Daten gespeichert. Die Nutzung erfolgt auf eigene Verantwortung.
 
             Urheberrecht
-            Die Inhalte und Grafiken dieses Spiels wurden von Dennis Freyer erstellt oder rechtmäßig verwendet. Eine kommerzielle Nutzung ist nicht gestattet.</p>     
+            Die Inhalte und Grafiken dieses Spiels wurden von Dennis Freyer erstellt oder rechtmäßig verwendet. Eine kommerzielle Nutzung ist nicht gestattet.   
+            <a class="icon" href="https://icons8.com/icons"> icons8</a>
+            </p>  
             </div>  
             <button class="position-absolute nextBtn d-flex justify-content-center align-items-center" onclick="showSecondPage()">Next</button>
         </div>            

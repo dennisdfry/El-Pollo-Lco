@@ -189,6 +189,8 @@ button:hover {
 }
 .impressum_h1{
     margin-block-start: 0;
+    font-size: 40px !important;
+    display: block !important;
 }
 .impressum {
     font-size: 24px;
@@ -196,6 +198,18 @@ button:hover {
     overflow-y: scroll; 
     scrollbar-width: none; 
     -ms-overflow-style: none; 
+}
+.icon{
+    text-decoration: none;
+    padding: 4px;
+    background-color:  #fbc80a;
+    color: #353434;
+    border-radius: 8px;
+}
+.icon:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease; 
 }
 
 .impressum::-webkit-scrollbar {

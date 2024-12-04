@@ -121,20 +121,19 @@ function restartGame() {
     }, 1000);
 }
 
-
 /**
  * toggle between mute and unmute
  * 
  */
 function toggleMute() {
     let audioImage = document.getElementById("audio");
-      if (isMuted) {
+    if (isMuted) {
         audioImage.src = 'img/icons8-low-volume-64.png';
-      } 
-      else {
+    } else {
         audioImage.src = 'img/icons8-mute-64.png';
-      }
-      isMuted = !isMuted;
+    }
+    isMuted = !isMuted;
+    localStorage.setItem('isMuted', isMuted);
 }
 
 
